@@ -1,0 +1,167 @@
+<!-- Page-header start -->
+<div class="">
+  <div class="page-header card">
+    <div class="row align-items-end">
+      <div class="col-lg-8">
+        <div class="page-header-title">
+          <span><i class="icofont icofont-users bg-c-pink"></i></span>
+          <div class="d-inline">
+            <span class="d-block">
+              <h4>User management</h4>
+            </span>
+            <span>This page allows you to add, delete, and update users in the system.</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="page-header-breadcrumb">
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a [routerLink]="'/'">
+                <i class="icofont icofont-home"></i>
+              </a>
+            </li>
+            <li class="breadcrumb-item">
+              <a [routerLink]="'/dashboard/user_account_management'">User Management
+
+              </a>
+
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Page-header end -->
+
+<div class="row">
+  <div class="col-sm-12">
+    <app-card [title]="'Products list'">
+
+      <div style="display: flex; align-items: center; justify-content: space-between;">
+        <div>
+        </div>
+        <div style="margin-right: 50px;">
+          <button type="button" class="btn btn-primary btn-sm" (click)="openAdd()" style="background-color: #5256ad; border-color: #5256ad;">
+            New Delivery Man
+        </button>
+        <br><br>
+        </div>
+    </div>
+
+      <div style="display: flex; align-items: center; justify-content: space-between;">
+        <div>
+            <label for="srch">Research</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <input id="serch" type="text" [(ngModel)]="term">
+        </div>
+        
+        <div style="margin-right: 50px;">
+          <select id="inputState" class="form-control" (change)="onRoleSelected($event.target.value)" >
+            <option value="-1" disabled selected>Choose Role</option>
+            <option value="1">All</option>
+            <option value="USER">User</option>
+            <option value="DELIVERYMAN">Deliveryman</option>
+        </select>
+        
+        </div>
+    </div>
+    <br><br>
+      <div class="table-responsive">
+        <table class="table table-bordered align-middle text-center" style="border: 1px solid black;">
+          <thead style="background-color: #5256ad; border: 1px;color: rgb(255, 255, 255);">
+            <tr>
+              <th scope="col">N° </th>
+              <th scope="col">First name</th>
+              <th scope="col">Last name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Role</th>
+              <th scope="col">Status</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+
+          <tbody *ngIf="listtUsers.length == 0">
+            <tr>
+              <td colspan="7"> 
+                  No Data Found
+              </td>
+            </tr>
+        </tbody>
+          <tbody
+            *ngFor="let item of this.listtUsers | filter:term | slice: (page - 1) * pageSize: page * pageSize; let i = index">
+            <tr *ngIf="item.role != 'ADMIN'">
+              <td>{{item.id}}</td>
+              <td>{{item.firstName}}</td>
+              <td>{{item.lastName}}</td>
+              <td>{{item.email}}</td>
+              <td style="background-color: aquamarine;">{{item.role}}</td>
+              <td>
+
+
+                <span *ngIf="item.status == 0" class="badge badge-danger">Desabled</span>
+                <span *ngIf="item.status == 1" class="badge badge-success">Enabled</span>
+
+                <!-- enabled -->
+              </td>
+              <td>
+
+
+                <svg *ngIf="item.role =='USER'" xmlns="http://www.w3.org/2000/svg" (click)="openUpdateUser(item)" width="20" height="20" fill="currentColor" class="bi bi-pencil-square text-warning" viewBox="0 0 16 16">
+                  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+              </svg>
+                <svg *ngIf="item.role !='USER'" xmlns="http://www.w3.org/2000/svg" (click)="openUpdate(item)" width="20" height="20" fill="currentColor" class="bi bi-pencil-square text-warning" viewBox="0 0 16 16">
+                  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+              </svg>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <svg xmlns="http://www.w3.org/2000/svg"  (click)="openInfo(item)" width="20" height="20" fill="currentColor" class="bi bi-eye text-primary" viewBox="0 0 16 16">
+                  <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
+                  <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"/>
+              </svg> 
+              
+<!-- 
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" (click)="openUpdate(item)" class="bi bi-chat-square text-primary" viewBox="0 0 16 16">
+                  <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-2.5a2 2 0 0 0-1.6.8L8 14.333 6.1 11.8a2 2 0 0 0-1.6-.8H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+                </svg> -->
+                <!-- update -->
+                <!-- <svg xmlns="http://www.w3.org/2000/svg" (click)="openUpdateCompte(item)" width="20" height="20"
+                  fill="currentColor" class="bi bi-pencil-square text-warning" viewBox="0 0 16 16">
+                  <path
+                    d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                  <path fill-rule="evenodd"
+                    d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
+                </svg> -->
+
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <!-- detailes -->
+                <!-- <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                  (click)="openInfo(item)" class="bi bi-eye text-primary" viewBox="0 0 16 16">
+                  <path
+                    d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z" />
+                  <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
+                </svg> -->
+
+
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="d-flex justify-content-between p-2">
+          <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="listtUsers.length">
+          </ngb-pagination>
+          <!-- Items per page -->
+          <div>
+            Items per page:
+            <select class="custom-select" style="width: auto" name="pageSize" (change)="handlePageSizeChange($event)">
+              <option *ngFor="let size of pageSizes" [ngValue]="size">
+                {{ size }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </app-card>
+  </div>
+</div>

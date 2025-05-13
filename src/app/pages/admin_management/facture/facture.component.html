@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Invoice Template Design</title>
+	<!-- <link rel="stylesheet" type="text/css" src="./../../../../assets/factCss/style.css"> -->
+</head>
+<body>
+
+<div class="wrapper">
+	<div class="invoice_wrapper">
+		<div class="header">
+			<div class="logo_invoice_wrap">
+				<div class="logo_sec">
+					<!-- <img style="max-width: 100px;" src="./../../../../assets/factCss/logo.png" alt="code logo"> -->
+					<div class="title_wrap">
+						<p class="title bold">Invoice</p>
+						<!-- <p class="sub_title">{{this.factureInfo.nom_medecin+' '+this.factureInfo.prenom_medecin}}</p>
+						<p class="sub_title">{{this.factureInfo.telephone_medecin}}</p> -->
+					</div>
+				</div>
+				<div class="invoice_sec">
+					<!-- <p class="invoice bold">INVOICE</p> -->
+					<p class="invoice_no">
+						<span class="bold">Ref</span>
+						<span>{{this.objOrderes.orderDate  | date:'ss.SSSSSS'}}</span>
+					</p>
+					<p class="date">
+						<span class="bold">Date</span>
+						<span>{{this.objOrderes.orderDate | date:'yyyy-MM-dd'}}</span>
+					</p>
+				</div>
+			</div>
+			<div class="bill_total_wrap">
+				<div class="bill_sec">
+					<p>For the Client : {{this.objOrderes.user.firstName+' '+this.objOrderes.user.lastName}}</p> 
+					<span>
+			           Email:{{this.objOrderes.user.email}}<br/>
+			           Phone: (+216) {{this.objOrderes.user.phone}}
+			        </span>
+				</div>
+				<div class="total_wrap">
+					<p>Delivery man: {{this.objOrderes.deliveryMan.lastName+' '+this.objOrderes.deliveryMan.firstName}}</p>
+					<span>
+						
+					 </span>
+					 <span>
+						Email:{{this.objOrderes.deliveryMan.email}}<br/>
+						<!-- Tel:{{this.factureInfo.telephone_patient}} -->
+					 </span>
+                     <span>
+						Phone:(+216) {{this.objOrderes.deliveryMan.phone}}<br/>
+						<!-- Tel:{{this.factureInfo.telephone_patient}} -->
+					 </span>
+				</div>
+			</div>
+		</div>
+		<div class="body">
+			<div class="main_table">
+				<div class="table_header">
+					<div class="row">
+						<div class="col col_des">N°</div>
+						<div class="col col_price">Article Name</div>
+						<div class="col col_qty">Quantity</div>
+						<div class="col col_total">Price</div>
+						<div class="col col_total">Tax</div>
+						<div class="col col_total">Total Price</div>
+					</div>
+				</div>
+				<div class="table_body"  *ngFor="let item2 of this.objOrderes.orderLines ">
+					<div class="row">
+						<div class="col col_no">
+							<p class="bold">{{item2.id}}</p>
+						</div>
+						<div class="col col_des">
+							<p class="bold">{{item2.product.name}}</p>
+							
+						</div>
+						<div class="col col_price">
+							<p class="bold">{{item2.quantity}}</p>
+						</div>
+						<div class="col col_qty">
+							<p class="bold">{{item2.product.price}}</p>
+						</div>
+						<div class="col col_total">
+							<p class="bold">{{item2.product.tva*100}} %</p>
+						</div>
+                        <div class="col col_total">
+							<p class="bold">{{item2.totalPriceHT}} DT</p>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="paymethod_grandtotal_wrap">
+				<div class="paymethod_sec">
+					<p class="bold">Payment Method</p>
+					<p>Visa, MasterCard, and we accept checks.
+                    </p>
+				</div>
+				<div class="grandtotal_sec">
+			        <p class="bold">
+
+			            <span>Total Price</span>
+			            <span>{{this.sommeTTC | number:'1.2-2'}} </span>
+			        </p>
+					<p class="bold">
+
+			            <span>Delivery man</span>
+			            <span>{{this.objOrderes.deliveryFee | number:'1.2-2'}} </span>
+			        </p>
+					     	<p class="bold">
+			            <span>To be paid</span>
+						<!--  -->
+			            <span>{{this.objOrderes.deliveryFee+this.sommeTTC| number:'1.2-2'}}</span>
+			        </p>
+				</div>
+			</div>
+		</div>
+		<!-- <div class="footer">
+            <p>Thank you and Best Wishes</p>
+			<div class="terms">
+                <p class="tc bold">Terms & Coditions</p>
+		        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit non praesentium doloribus. Quaerat vero iure itaque odio numquam, debitis illo quasi consequuntur velit, explicabo esse nesciunt error aliquid quis eius!</p>
+		    </div>
+		</div> -->
+	</div>
+    <br><br>
+    <div class="text-right">
+        <!-- <button type="button" class="btn btn-primary btn-lg">Print</button> -->
+    </div>
+    
+    
+</div>
+
+
+</body>
+</html>

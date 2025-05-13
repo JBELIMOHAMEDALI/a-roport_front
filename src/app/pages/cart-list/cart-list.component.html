@@ -1,0 +1,138 @@
+<!-- Page-header start -->
+<div class="">
+  <div class="page-header card">
+    <div class="row align-items-end">
+      <div class="col-lg-8">
+        <div class="page-header-title">
+          <span><i class="icofont icofont-cart bg-c-pink"></i></span>
+          <div class="d-inline">
+            <span class="d-block">
+              <h4>Cart management</h4>
+            </span>
+            <span>This page allows you to view and update the items in your cart.</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="page-header-breadcrumb">
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a [routerLink]="'/dashboard'">
+                <i class="icofont icofont-home"></i>
+              </a>
+            </li>
+            <li class="breadcrumb-item">
+              <a [routerLink]="'/dashboard/my_cart'">Cart Management
+
+              </a>
+
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Page-header end -->
+
+<div class="row">
+  <div class="col-sm-12">
+    <app-card [title]="'Cart list'">
+
+      <label for="srch">Research</label>&nbsp;&nbsp;&nbsp;&nbsp;
+      <input id="serch" type="text" [(ngModel)]="term">
+      <div style="float: right;margin-right: 20px;">
+        <button type="button" class="btn btn-success btn-sm" (click)="openValiedeAchatAll()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-check2-circle"
+            viewBox="0 0 16 16">
+            <path
+              d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0" />
+            <path
+              d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z" />
+          </svg>
+          Validate All
+        </button>
+        <br />
+        <br />
+
+      </div>
+      <div class="table-responsive">
+        <table class="table table-bordered align-middle text-center" style="border: 1px solid black;">
+          <thead style="background-color: #5256ad; border: 1px;color: rgb(255, 255, 255);">
+            <tr>
+              <th scope="col">Ref N°</th>
+              <th scope="col">Product Name</th>
+              <th scope="col">Product Price</th>
+              <th scope="col">Total TTC</th>
+              <th scope="col">Product Tax</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="cartList.length == 0">
+              <tr>
+                <td colspan="6"> 
+                    No Data Found
+                </td>
+              </tr>
+          </tbody>
+
+          <tbody
+            *ngFor="let item of this.cartList | filter:term | slice: (page - 1) * pageSize: page * pageSize; let i = index">
+            <tr>
+
+              <!-- 
+                <td style="background-color: antiquewhite;">{{item.price+' DT'}}</td>
+                <td style="background-color: beige;">{{item.tva+' %'}}</td>
+                <td style="background-color: aquamarine;">{{item.priceWithTva+' DT'}}</td> -->
+
+
+              <td>{{item.index}}</td>
+              <td>{{item.name}}</td>
+              <td style="background-color: antiquewhite;">{{item.price+ ' DT'}}</td>
+              <td style="background-color: aquamarine;">{{item.ttprice+ ' DT'}}</td>
+              <td style="background-color: beige;">{{item.tva+' %'}}</td>
+              <td>
+                <!-- update -->
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <!-- detailes -->
+                <!-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye text-primary" viewBox="0 0 16 16">
+                        <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
+                        <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"/>
+                    </svg> -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" (click)="openValiedeAchatOne(item.index)" height="24"
+                  fill="currentColor" class="bi bi-check2-circle text-success" viewBox="0 0 16 16">
+                  <path
+                    d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0" />
+                  <path
+                    d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z" />
+                </svg>
+
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <!-- delete -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" (click)="openDelete(item.index)" height="16"
+                  fill="currentColor" class="bi bi-trash3 text-danger" viewBox="0 0 16 16">
+                  <path
+                    d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5" />
+                </svg>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="d-flex justify-content-between p-2">
+          <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="cartList.length">
+          </ngb-pagination>
+          <!-- Items per page -->
+          <div>
+            Items per page:
+            <select class="custom-select" style="width: auto" name="pageSize" (change)="handlePageSizeChange($event)">
+              <option *ngFor="let size of pageSizes" [ngValue]="size">
+                {{ size }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </app-card>
+  </div>
+</div>

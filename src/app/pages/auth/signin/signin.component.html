@@ -1,0 +1,116 @@
+<section class="vh-100">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" [routerLink]="['/']">Home</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <!-- <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#!">About</a></li> -->
+                    <li class="nav-item dropdown">
+                        <!-- <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">Shop</a> -->
+                        <!-- <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#!">All Products</a></li>
+                            <li>
+                                <hr class="dropdown-divider" />
+                            </li>
+                            <li><a class="dropdown-item" href="#!">Popular Items</a></li>
+                            <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
+                        </ul> -->
+                    </li>
+                </ul>
+                <!-- <form class="d-flex"> -->
+                <button class="btn btn-outline-dark mr-3" type="button" [routerLink]="['/signup']">
+                    <!-- <i class="bi-cart-fill me-1"></i> -->
+                    <!-- <i class="bi-bi-person-add"></i> -->
+                    Register
+                    <!-- <span class="badge bg-dark text-white ms-1 rounded-pill">0</span> -->
+                </button>
+                <button class="btn btn-outline-dark" type="button" [routerLink]="['/signin']">
+                    <!-- <i class="bi-cart-fill me-1"></i> -->
+                    Login
+                    <!-- <span class="badge bg-dark text-white ms-1 rounded-pill">0</span> -->
+                </button>
+                <!-- </form> -->
+            </div>
+        </div>
+    </nav>
+	<div class="container-fluid h-custom">
+		<br>
+		<br>
+	  <div class="row d-flex justify-content-center align-items-center h-100">
+		<div class="col-md-9 col-lg-6 col-xl-5">
+		  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+			class="img-fluid" alt="Sample image">
+		</div>
+
+		<div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+			<form name="form" (ngSubmit)="login(flogin)" #flogin="ngForm">
+				<div class="text-center">
+			  <p class="lead fw-normal mb-0 me-3">Sign In</p>
+			  <br>
+			  <br>
+			</div>
+  
+
+  
+			<!-- Email input Enter a valid email address-->
+			<div data-mdb-input-init class="form-outline mb-4">
+				<label class="form-label" for="form3Example3">Email address</label>
+				<input type="text" class="form-control" name="email"
+					pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" id="email" placeholder="Email"
+					ngModel #email="ngModel" required>
+					<span *ngIf="email.touched && email.errors?.required" class="text-danger"> Email address
+						is
+						required.</span>
+					<span *ngIf="email.touched && email.errors?.pattern" class="text-danger"> This is not a
+						valid
+						Email.</span>
+			  
+			</div>
+  
+			<!-- Password input -->
+			<div data-mdb-input-init class="form-outline mb-3">
+				<label class="form-label" for="form3Example4">Password</label>
+				<input type="password" class="form-control" name="password" id="password"
+				placeholder="Password"  ngModel
+				#password="ngModel" required />
+				<!-- pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" -->
+				<span *ngIf="password.invalid && password.touched && password.errors.required"
+                                    class="text-danger"> Password is
+                                    required.</span>
+                                <span *ngIf="password.invalid && password.touched && password.errors.pattern"
+                                    class="text-danger"> Password Must contain at least one number and one uppercase and
+                                    lowercase letter, at least 8 or more characters..</span>
+		
+			</div>
+  
+			<div class="d-flex justify-content-between align-items-center">
+			  <!-- Checkbox -->
+			  <div class="form-check mb-0">
+				<input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
+				<label class="form-check-label" for="form2Example3">
+				  Remember me
+				</label>
+			  </div>
+			  <!-- <a href="#!" class="text-body">Forgot password?</a> -->
+			</div>
+  
+			<div class="text-center text-lg-start mt-4 pt-2">
+				<button type="submit" [disabled]="this.loggedIn" class="btn btn-block btn-dark">
+					<div *ngIf="this.loggedIn" class="spinner-border " role="status">
+					  <span class="sr-only">Loading...</span>
+					</div>
+					<span *ngIf="!this.loggedIn">Login</span>
+				  </button>
+			  <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="/signup"
+				  class="link-danger">Register</a></p>
+			</div>
+		  </form>
+		</div>
+	  </div>
+	</div>
+  </section>

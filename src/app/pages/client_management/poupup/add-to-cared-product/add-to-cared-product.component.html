@@ -1,0 +1,47 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{title}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span><!-- l'icone X (croix) -->
+    </button>
+</div>
+<div class="modal-body">
+    <form class="form" name="form" #f="ngForm" (ngSubmit)="this.Onsubmit(f)">
+        <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+            Ref
+              <span class="badge badge-primary badge-pill">{{this.obj.id}}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Category              
+                <span class="badge badge-primary badge-pill">{{this.obj.category.name}}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Price
+                              <span class="badge badge-primary badge-pill">{{this.obj.price +' DT'}}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Tax
+                              <span class="badge badge-primary badge-pill">{{this.obj.tva +'%'}}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Price+Tax
+                              <span class="badge badge-primary badge-pill">{{this.obj.priceWithTva+' DT'}}</span>
+            </li>
+          </ul>
+<br><br>    
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label for="inputEmail4">Quantity</label>
+                <input type="number" min="1"  class="form-control" id="quantity" name="quantity" ngModel [(ngModel)]="this.model.quantity"
+                    #quantity="ngModel" placeholder="Quantity" required>
+                <span *ngIf="quantity.touched && quantity.errors?.required" class="text-danger">Quantity is
+                    required</span>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button  type="submit" [disabled]="f.invalid" class="btn btn-primary">Add</button>
+            <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+        </div>
+    </form>
+
+</div>

@@ -1,0 +1,356 @@
+<!--profile cover start-->
+<div class="row">
+  <div class="col-lg-12">
+    <div class="cover-profile">
+      <div class="profile-bg-img">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="card-body user-info" style="background-color: white;">
+          <div class="col-md-12">
+            <div class="media-left">
+              <a href="javascript:;" class="profile-image">
+                <img class="user-img img-radius" src="{{this.userInfo.imagePath}}" alt="user-img" style="width: 100px; height: auto; object-fit: cover;">
+              </a>
+            </div>
+            <div class="media-body row" style="color: black;">
+              <div class="col-lg-12">
+                <div class="user-title">
+                  <h2 class="text-black">{{this.userInfo?.firstName+' '+this.userInfo?.lastName}}</h2>
+                  <span class="text-black">{{this.userInfo?.authorities[0].authority}}</span>
+                </div>
+              </div>
+              <div>
+                <!-- Buttons can go here if needed -->
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--profile cover end-->
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="md-tabs">
+      <ngb-tabset>
+        <ngb-tab title="Personal Info">
+          <ng-template ngbTabContent>
+            <div [@fadeInOutTranslate] class="m-t-15">
+              <!-- personal card start -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-header-text">About Me</h5>
+                  <button id="edit-btn" type="button" class="btn btn-sm btn-primary waves-effect waves-light f-right"
+                    (click)="toggleEditProfile()">
+                    <i class="icofont {{ editProfileIcon }}"></i>
+                  </button>
+                </div>
+                <div class="card-body">
+                  <div class="view-info" *ngIf="editProfile">
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <div class="general-info">
+                          <div class="row">
+                            <div class="col-lg-12 col-xl-6">
+                              <div class="table-responsive">
+                                <table class="table m-0">
+                                  <tbody>
+                                    <tr>
+                                      <th scope="row">Full Name</th>
+                                      <td>{{this.userInfo.firstName+' '+this.userInfo.lastName}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">Birth Date</th>
+                                      <td>{{this.userInfo.birthday}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">Location</th>
+                                      <td>{{this.userInfo.address}}</td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                            <!-- end of table col-lg-6 -->
+                            <div class="col-lg-12 col-xl-6">
+                              <div class="table-responsive">
+                                <table class="table">
+                                  <tbody>
+                                    <tr>
+                                      <th scope="row">Email</th>
+                                      <td><a href="javascript:;">{{this.userInfo.email}}</a></td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">Mobile Number</th>
+                                      <td>{{this.userInfo.phone}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">Status</th>
+                                      <td>
+
+                                        <h4><span *ngIf="this.userInfo.status == 0"
+                                            class="badge badge-danger">Desabled</span></h4>
+                                        <h4><span *ngIf="this.userInfo.status == 1"
+                                            class="badge badge-success">Enabled</span></h4>
+                                      </td>
+                                    </tr>
+
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                            <!-- end of table col-lg-6 -->
+                          </div>
+                          <!-- end of row -->
+                        </div>
+                        <!-- end of general info -->
+                      </div>
+                      <!-- end of col-lg-12 -->
+                    </div>
+                    <!-- end of row -->
+                  </div>
+                  <!-- end of view-info -->
+                  <div class="edit-info" *ngIf="!editProfile">
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <div class="general-info">
+                          <div class="row">
+                            <div class="col-lg-6">
+                              <div class="table-responsive">
+                                <table class="table">
+                                  <tbody>
+                                    <tr>
+                                      <td>
+                                        <div class="input-group">
+                                          <span class="input-group-prepend"><label class="input-group-text"><i
+                                                class="icofont icofont-user"></i></label></span>
+                                          <input type="text" class="form-control" id="firstName" name="firstName"
+                                            ngModel [(ngModel)]="this.userInfo.firstName" #firstName="ngModel"
+                                            placeholder="First Name" required>
+                                        </div>
+                                        <div *ngIf="firstName.touched && firstName.errors?.required"
+                                          class="text-danger">First Name is
+                                          required
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td>
+                                        <div class="input-group">
+                                          <span class="input-group-prepend"><label class="input-group-text"><i
+                                                class="icofont icofont-email"></i></label></span>
+                                          <input type="text" class="form-control" id="email" name="email" ngModel
+                                            [(ngModel)]="this.userInfo.email" #email="ngModel" placeholder="First Name"
+                                            required>
+                                        </div>
+                                        <div *ngIf="email.touched && email.errors?.required" class="text-danger">Email
+                                          is
+                                          required
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td>
+                                        <div class="input-group">
+                                          <span class="input-group-prepend"><label class="input-group-text"><i
+                                                class="icofont icofont-birthday-cake"></i></label></span>
+                                          <input type="date" class="form-control" name="birthday" ngModel
+                                            [(ngModel)]="this.userInfo.birthday" #birthday="ngModel"
+                                            placeholder="Date de Naissance" required>
+                                        </div>
+
+                                        <div *ngIf="birthday.touched && birthday.errors?.required" class="text-danger">
+                                          Birthday is
+                                          required
+                                        </div>
+                                      </td>
+                                    </tr>
+
+                                    <tr>
+                                      <td>
+                                        <div class="input-group">
+                                          <span class="input-group-prepend"><label class="input-group-text"><i
+                                                class="icofont icofont-ui-image"></i></label></span>
+                                                <input type="file" class="form-control" (change)="onFileSelected($event)"  id="imagePath" name="imagePath" ngModel  #imagePath="ngModel"  required>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                            <!-- end of table col-lg-6 -->
+                            <div class="col-lg-6">
+                              <div class="table-responsive">
+                                <table class="table">
+                                  <tbody>
+                                    <tr>
+                                      <td>
+                                        <div class="form-group col-md-12">
+                                          <div class="input-group">
+                                            <span class="input-group-prepend"><label class="input-group-text"><i
+                                                  class="icofont icofont-user"></i></label></span>
+                                            <input type="text" class="form-control" id="lastName" name="lastName"
+                                              ngModel [(ngModel)]="this.userInfo.lastName" #lastName="ngModel"
+                                              placeholder="First Name" required>
+                                          </div>
+                                        </div>
+                                        <div *ngIf="lastName.touched && lastName.errors?.required" class="text-danger">
+                                          Last Name is
+                                          required
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td>
+                                        <div class="form-group col-md-12">
+                                          <div class="input-group">
+                                            <span class="input-group-prepend"><label class="input-group-text"><i
+                                                  class="icofont icofont-phone"></i></label></span>
+                                            <input type="text" class="form-control" id="phone" name="phone" ngModel
+                                              [(ngModel)]="this.userInfo.phone" #phone="ngModel"
+                                              placeholder="Mobile Number" required>
+                                          </div>
+                                        </div>
+                                        <div *ngIf="phone.touched && phone.errors?.required" class="text-danger">Mobile
+                                          Number is
+                                          required
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <!--  -->
+                                      <td>
+                                        <div class="form-group col-md-12">
+                                          <div class="input-group">
+                                            <span class="input-group-prepend"><label class="input-group-text"><i
+                                                  class="icofont icofont-location-pin"></i></label></span>
+                                            <input type="text" class="form-control" id="address" name="Location" ngModel
+                                              [(ngModel)]="this.userInfo.address" #address="ngModel"
+                                              placeholder="Mobile Number" required>
+                                          </div>
+                                        </div>
+                                        <div *ngIf="address.touched && address.errors?.required" class="text-danger">Location is
+                                          required
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                            <!-- end of table col-lg-6 -->
+                          </div>
+                          <!-- end of row -->
+                          <div class="text-center">
+                            <a href="javascript:;" (click)="upadateUser()" class="btn btn-primary waves-effect waves-light m-r-20">
+                              <div *ngIf="this.doIt" class="spinner-border " role="status">
+                                <span class="sr-only">Loading...</span>
+                              </div>
+                              <span *ngIf="!this.doIt">Save</span>
+                              </a>
+                            <a href="javascript:;" id="edit-cancel" class="btn btn-default waves-effect"
+                              (click)="toggleEditProfile()">Cancel</a>
+                          </div>
+                        </div>
+                        <!-- end of edit info -->
+                      </div>
+                      <!-- end of col-lg-12 -->
+                    </div>
+                    <!-- end of row -->
+                  </div>
+                  <!-- end of edit-info -->
+                </div>
+                <!-- end of card-body -->
+              </div>
+              <!-- personal card end-->
+            </div>
+          </ng-template>
+        </ngb-tab>
+
+        <!-- <ngb-tab title="Settings">
+          <ng-template ngbTabContent>
+            <div [@fadeInOutTranslate] class="m-t-15">
+              <div class="card">
+                <div class="card-header text-center">
+                  <h5 class="card-header-text">Change Your Password</h5>
+                </div>
+                <div class="card-body">
+                  <div class="form-row">
+                    <div class="form-group col-12">
+                      <label for="currentPassword">Current Password</label>
+                      <input
+                        type="password"
+                        class="form-control"
+                        id="currentPassword"
+                        name="currentPassword"
+                        ngModel
+                        [(ngModel)]="this.model.currentPassword"
+                        #currentPassword="ngModel"
+                        placeholder="Enter Current Password"
+                        style="margin-left: 30%; margin-right: 30%;"
+                        required
+                      />
+                      <span *ngIf="currentPassword.touched && currentPassword.errors?.required" class="text-danger">
+                        Current Password is required
+                      </span>
+                    </div>
+                  </div>
+        
+                  <div class="form-row">
+                    <div class="form-group col-12">
+                      <label for="newPassword">New Password</label>
+                      <input
+                        type="password"
+                        class="form-control"
+                        id="newPassword"
+                        name="newPassword"
+                        ngModel
+                        [(ngModel)]="this.model.newPassword"
+                        #newPassword="ngModel"
+                        placeholder="Enter New Password"
+                        style="margin-left: 30%; margin-right: 30%;"
+                        required
+                      />
+                      <span *ngIf="newPassword.touched && newPassword.errors?.required" class="text-danger">
+                        New Password is required
+                      </span>
+                    </div>
+                  </div>
+        
+                  <div class="form-row">
+                    <div class="form-group col-12">
+                      <label for="confirmPassword">Confirm New Password</label>
+                      <input
+                        type="password"
+                        class="form-control"
+                        id="confirmPassword"
+                        name="confirmPassword"
+                        ngModel
+                        [(ngModel)]="this.model.confirmPassword"
+                        #confirmPassword="ngModel"
+                        placeholder="Confirm New Password"
+                        style="margin-left: 30%; margin-right: 30%;"
+                        required
+                      />
+                      <span *ngIf="confirmPassword.touched && confirmPassword.errors?.required" class="text-danger">
+                        Confirm New Password is required
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </ngb-tab> -->
+        
+      </ngb-tabset>
+    </div>
+  </div>
+</div>

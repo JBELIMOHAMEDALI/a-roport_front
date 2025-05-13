@@ -1,0 +1,30 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{title}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span><!-- l'icone X (croix) -->
+    </button>
+</div>
+<div class="modal-body">
+    <form class="form" name="form" #f="ngForm" (ngSubmit)="this.Onsubmit(f)">
+
+        <div class="form-group col-md-12">
+            <label for="inputState">Account status</label>
+            <select id="inputState" class="form-control" [(ngModel)]="model.status" #status="ngModel" name="status" required>
+                <option value="-1" disabled selected>choose status</option>
+                    <option disabled value="1">Shipped</option>
+                    <option value="2">Delivered</option>
+                    <option value="3">Canceled</option>
+            </select>
+            <span *ngIf="status.touched && status.errors?.required" class="text-danger">Order status is
+                required</span>
+        </div>
+
+
+        <div class="modal-footer">
+            <button *ngIf="this.add==true" type="submit" [disabled]="f.invalid" class="btn btn-primary">Add</button>
+            <button *ngIf="this.add==false" type="submit" [disabled]="f.invalid" class="btn btn-warning">Edit</button>
+            <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+        </div>
+    </form>
+
+</div>

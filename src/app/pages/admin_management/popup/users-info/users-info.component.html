@@ -1,0 +1,85 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{title}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span><!-- l'icone X (croix) -->
+    </button>
+</div>
+<div class="modal-body">
+    <form class="form" name="form" #f="ngForm" (ngSubmit)="this.Onsubmit(f)">
+
+
+        <ng-container *ngIf="this.obj.role == 'DELIVERYMAN'">
+        <div class="form-group col-md-12">
+            <label for="inputEmail4">First Name</label>
+            <input [disabled]="!enable"  type="text" class="form-control" id="firstName" name="firstName" ngModel
+                [(ngModel)]="this.model.firstName" #firstName="ngModel" placeholder="First Name" required>
+            <span *ngIf="firstName.touched && firstName.errors?.required" class="text-danger">First Name is
+                required</span>
+        </div>
+        <div class="form-group col-md-12">
+            <label for="inputEmail4">Last Name</label>
+            <input [disabled]="!enable"  type="text" class="form-control" id="lastName" name="lastName" ngModel
+                [(ngModel)]="this.model.lastName" #lastName="ngModel" placeholder="Last Name" required>
+            <span *ngIf="lastName.touched && lastName.errors?.required" class="text-danger">Last Name is
+                required</span>
+        </div>
+        <div class="form-group col-md-12">
+            <div data-mdb-input-init class="form-outline">
+                <label class="form-label" for="form3Example3">Email address</label>
+                <input [disabled]="!enable"  type="text" class="form-control"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                
+                id="email" name="email" ngModel [(ngModel)]="this.model.email" #email="ngModel" placeholder="Email" required>
+
+            </div>
+            <span *ngIf="email.touched && email.errors?.required" class="text-danger"> Email address
+                is
+                required.</span>
+            <span *ngIf="email.touched && email.errors?.pattern" class="text-danger"> This is not a
+                valid
+                Email.</span>
+
+        </div>
+        <div class="form-group col-md-12">
+            <label for="inputEmail4">Birthday</label>
+            <input [disabled]="!enable"  type="date" class="form-control" id="birthday" [max]="maxDate" name="birthday" ngModel
+                [(ngModel)]="this.model.birthday" #birthday="ngModel" placeholder="Product birthday" required>
+            <span *ngIf="birthday.touched && birthday.errors?.required" class="text-danger">Birthday is
+                required</span>
+        </div>
+        <div class="form-group col-md-12">
+            <label for="inputEmail4">Phone Number</label>
+            <input [disabled]="!enable" type="text" class="form-control" id="phone" name="phone" ngModel [(ngModel)]="this.model.phone"
+                #phone="ngModel" placeholder="Phone Number" required>
+            <span *ngIf="phone.touched && phone.errors?.required" class="text-danger">Phone Number is
+                required</span>
+        </div>
+        <div class="form-group col-md-12">
+            <div data-mdb-input-init class="form-outline">
+                <label class="form-label" for="form3Example1">Address</label>
+                <input type="text" class="form-control" id="address" name="address" ngModel [(ngModel)]="this.model.address" #address="ngModel" placeholder="Address" required> 
+            </div>
+            <span *ngIf="address.invalid && address.touched" class="text-danger"> Address is
+                required.</span>
+        </div>
+       </ng-container>
+
+
+
+        <div class="form-group col-md-12">
+            <label for="inputState">Account status</label>
+            <select id="inputState" class="form-control" [(ngModel)]="model.status" #status="ngModel" name="status" required>
+                <option value="-1" disabled selected>choose status</option>
+                    <option value="1">Enabled</option>
+                    <option value="0">Desabled</option>
+            </select>
+            <span *ngIf="status.touched && status.errors?.required" class="text-danger">Account status is
+                required</span>
+        </div>
+
+        <div class="modal-footer">
+            <button *ngIf="this.add==false && this.title == 'Update Users'" type="submit" [disabled]="f.invalid" class="btn btn-warning">Edit</button>
+            <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+        </div>
+    </form>
+
+</div>

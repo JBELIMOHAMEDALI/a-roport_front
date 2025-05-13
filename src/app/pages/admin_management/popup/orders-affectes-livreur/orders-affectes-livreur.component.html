@@ -1,0 +1,36 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{title}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span><!-- l'icone X (croix) -->
+    </button>
+</div>
+<div class="modal-body">
+    <form class="form" name="form" #f="ngForm" (ngSubmit)="this.Onsubmit(f)">
+
+
+        <div class="form-group col-md-12">
+            <label for="inputState">Delivery Man</label>
+            <select id="inputState" class="form-control" [(ngModel)]="model.id_delivery" #id_delivery="ngModel" name="id_delivery" required>
+                <option value="-1" disabled>choose Delivery Man</option>
+                <ng-container *ngFor="let item of delivredList">
+                    <option [value]="item.id">{{item.firstName +' '+item.lastName}}</option>
+                </ng-container>
+            </select>
+            <!-- <div *ngIf="id_delivery.touched && id_delivery.errors?.required" class="error">id_delivery is required</div> -->
+            <span *ngIf="id_delivery.touched && id_delivery.errors?.required" class="text-danger">Delivery Man is
+                required</span>
+        </div>
+            <div class="form-group col-md-12">
+                <label for="inputEmail4">Delivery fee</label>
+                <input type="number" class="form-control" id="fee" name="fee" ngModel [(ngModel)]="this.model.fee"
+                    #fee="ngModel" placeholder="Designation" required>
+                <span *ngIf="fee.touched && fee.errors?.required" class="text-danger">Delivery fee is
+                    required</span>
+            </div>
+        <div class="modal-footer">
+            <button  type="submit" [disabled]="f.invalid" class="btn btn-primary">Save</button>
+            <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+        </div>
+    </form>
+
+</div>

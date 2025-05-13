@@ -1,0 +1,168 @@
+<!-- Section: Design Block -->
+<section class="text-center">
+    <!-- Background image -->
+    <!-- <div class="p-5 bg-dark "></div> -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" [routerLink]="['/']">Home</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                </ul>
+                <button class="btn btn-outline-dark mr-3" type="button" [routerLink]="['/signup']">
+                    Register
+                </button>
+                <button class="btn btn-outline-dark" type="button" [routerLink]="['/signin']">
+                    Login
+                </button>
+            </div>
+        </div>
+    </nav>
+
+
+    <header class="bg-dark py-5">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="text-center text-white">
+                <!-- <h1 class="display-4 fw-bolder">Shop in style</h1>
+            <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p> -->
+            </div>
+        </div>
+    </header>
+    <!-- style="
+    background-image: url('https://mdbootstrap.com/img/new/textures/full/171.jpg');
+    height: 300px;
+    " -->
+    <!-- Background image -->
+
+    <div class="card mx-4 mx-md-5 shadow-5-strong bg-body-tertiary" style="
+          margin-top: -100px;
+          backdrop-filter: blur(30px);
+          ">
+        <div class="card-body py-5 px-md-5">
+
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-8">
+                    <h2 class="fw-bold mb-5">Sign up now</h2>
+                    <form name="form" (ngSubmit)="signup(fadd)" #fadd="ngForm" novalidate>
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <div data-mdb-input-init class="form-outline">
+                                    <label class="form-label" for="form3Example1">First name</label>
+                                    <input type="text" class="form-control" name="firstName" id="firstName"
+                                        placeholder="First name" ngModel #firstName="ngModel" required />
+                                </div>
+                                <span *ngIf="firstName.invalid && firstName.touched" class="text-danger"> First Name is
+                                    required.</span>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div data-mdb-input-init class="form-outline">
+                                    <label class="form-label" for="form3Example2">Last name</label>
+                                    <input type="text" class="form-control" name="lastName" id="lastName"
+                                        placeholder="Last name" ngModel #lastName="ngModel" required />
+
+                                </div>
+                                <span *ngIf="lastName.invalid && lastName.touched" class="text-danger"> Last Name is
+                                    required.</span>
+                            </div>
+                        </div>
+
+                        <!-- Email input -->
+                        <div class="row">
+                            <div class="col-md-12 mb-4">
+                                <div data-mdb-input-init class="form-outline">
+                                    <label class="form-label" for="form3Example3">Email address</label>
+                                    <input type="text" class="form-control" name="email"
+                                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" id="email" placeholder="Email"
+                                        ngModel #email="ngModel" required>
+
+                                </div>
+                                <span *ngIf="email.touched && email.errors?.required" class="text-danger"> Email address
+                                    is
+                                    required.</span>
+                                <span *ngIf="email.touched && email.errors?.pattern" class="text-danger"> This is not a
+                                    valid
+                                    Email.</span>
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-6 mb-4">
+                                <div data-mdb-input-init class="form-outline">
+                                    <label class="form-label" for="form3Example1">Password</label>
+                                    <input type="password" class="form-control" name="password" id="password"
+                                        placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" ngModel
+                                        #password="ngModel" required />
+                                </div>
+                                <span *ngIf="password.invalid && password.touched && password.errors.required"
+                                    class="text-danger"> Password is
+                                    required.</span>
+                                <span *ngIf="password.invalid && password.touched && password.errors.pattern"
+                                    class="text-danger"> Password Must contain at least one number and one uppercase and
+                                    lowercase letter, at least 8 or more characters..</span>
+
+                            </div>
+
+                            <div class="col-md-6 mb-4">
+                                <div data-mdb-input-init class="form-outline">
+                                    <label class="form-label" for="form3Example1">Birthday</label>
+                                    <input type="date" class="form-control" name="birthday" id="birthday"
+                                        placeholder="Birthday" ngModel #birthday="ngModel" [max]="maxDate" required />
+                                </div>
+                                <span *ngIf="birthday.invalid && birthday.touched && birthday.errors?.required"
+                                    class="text-danger">
+                                    Birthday is required.
+                                </span>
+                                <span *ngIf="birthday.invalid && birthday.touched && birthday.errors?.max"
+                                    class="text-danger">
+                                    Birthday cannot be in the future.
+                                </span>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+
+                            <div class="col-md-6 mb-4">
+                                <div data-mdb-input-init class="form-outline">
+                                    <label class="form-label" for="form3Example1">Address</label>
+                                    <input type="text" class="form-control" name="address" id="address"
+                                        placeholder="Address" ngModel #address="ngModel" required />
+                                </div>
+                                <span *ngIf="address.invalid && address.touched" class="text-danger"> Address is
+                                    required.</span>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div data-mdb-input-init class="form-outline">
+                                    <label class="form-label" for="form3Example2">Phone Number</label>
+                                    <input type="text" class="form-control" name="phone" id="phone"
+                                        placeholder="Phone Number" ngModel #phone="ngModel" required />
+                                </div>
+                                <span *ngIf="phone.invalid && phone.touched" class="text-danger">Phone Number is
+                                    required.</span>
+                            </div>
+                        </div>
+
+                        <br>
+                        <button type="submit" data-mdb-button-init data-mdb-ripple-init [disabled]="this.fadd.invalid"
+                            class="btn btn-dark btn-block mb-4">
+                            <div *ngIf="this.loggedIn" class="spinner-border " role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                            <span *ngIf="!this.loggedIn">Sign up</span>
+                        </button>
+                        <div class="text-center">
+                            <span class="d-block text-center my-8 text-muted">Have an account?
+                                &mdash;<a routerLink="/signin">Sign In</a> &mdash;
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Section: Design Block -->

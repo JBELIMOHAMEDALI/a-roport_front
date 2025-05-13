@@ -1,0 +1,85 @@
+<div class="modal-header">
+  <h4 class="modal-title">User Information</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <!-- Left Section: User Image with Shadow -->
+    <div class="col-md-3 text-center">
+      <br>
+      <img src="{{ obj?.imagePath }}" alt="User Image" class="img-fluid mb-3 shadow" style="border-radius: 20px; width: 150px; height: 150px;">
+    </div>
+
+    <!-- Right Section: User Details -->
+    <div class="col-md-9">
+      <div class="row">
+        <!-- Client Name and Phone Number -->
+        <div class="col-md-6">
+          <br>
+          <p class="mb-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-fill text-primary" viewBox="0 0 16 16">
+              <path d="M3 14s-1 0-1-1 1-4 6-4 6 4 6 4-1 1-1 1H3zm5-7a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+            </svg> 
+            <strong>Client Full Name :</strong> {{this.obj.firstName + this.obj.lastName}}
+          </p>
+          <br>
+          <p class="mb-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-telephone-fill text-primary" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M2.156 1.28A1 1 0 0 0 1 2.25v11.5a1 1 0 0 0 1.156.97c2.112-.287 5.01-2.03 6.785-3.805 1.775-1.776 3.518-4.673 3.805-6.785A1 1 0 0 0 13.75 1h-11.5a1 1 0 0 0-.594.28z"/>
+            </svg> 
+            <strong>Phone Number :</strong> {{this.obj.phone}}
+          </p>
+        </div>
+
+        <!-- Email and Address -->
+        <div class="col-md-6">
+          <br>
+          <p class="mb-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-envelope-fill text-primary" viewBox="0 0 16 16">
+              <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v.05l-7.247 4.314L0 4.05V4zM0 5.803v6.201L5.803 8 0 5.803zM6.761 8.933L8 9.692l1.239-.759L16 12V5.803L10.197 8.002 6.761 8.933zM15 5.878v6.243a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V5.878l7.239 4.318a1 1 0 0 0 1.036 0L15 5.878z"/>
+            </svg> 
+            <strong>Email :</strong> {{this.obj.email}}
+          </p>
+          <br>
+          <p class="mb-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-geo-alt-fill text-primary" viewBox="0 0 16 16">
+              <path d="M8 16s6-5.686 6-10A6 6 0 1 0 2 6c0 4.314 6 10 6 10zm0-14a4 4 0 1 1 0 8 4 4 0 0 1 0-8z"/>
+              <path d="M8 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
+            </svg> 
+            <strong>Address :</strong> {{this.obj.address}}
+          </p>
+        </div>
+      </div>
+
+      <!-- Status and Role Section -->
+      <div class="row mt-3">
+        <div class="col-md-6">
+          <p class="mb-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-shield-fill-check text-primary" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M8 0c-.69 0-1.25.563-1.25 1.25v7.667c0 .463-.226.875-.61 1.114L.79 13.127c-.774.387-.79 1.334-.036 1.72 2.437 1.276 5.823 1.276 8.26 0 .753-.386.738-1.333-.037-1.72l-5.35-3.096c-.384-.239-.61-.651-.61-1.114V1.25C9.25.563 8.69 0 8 0z"/>
+            </svg>
+            <strong>Status :</strong> &nbsp;&nbsp;
+      
+            <span *ngIf="this.obj.status == 0" class="badge badge-danger">Desabled</span>
+            <span *ngIf="this.obj.status == 1" class="badge badge-success">Enabled</span>
+
+          </p>
+        </div>
+        <div class="col-md-6">
+          <p class="mb-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-badge-fill text-primary" viewBox="0 0 16 16">
+              <path d="M3 14s-1 0-1-1 1-4 6-4 6 4 6 4-1 1-1 1H3zm5-7a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+              <path d="M9.998 13a5.418 5.418 0 0 0-2-.348 5.418 5.418 0 0 0-2 .348C4.342 12.48 3.5 11.312 3.5 10c0-.379.102-.73.281-1.041.272-.486.752-.979 1.458-1.541A1.978 1.978 0 0 1 8 7a1.978 1.978 0 0 1 1.761 1.418c.706.562 1.186 1.055 1.458 1.541.179.311.281.662.281 1.041 0 1.312-.842 2.48-1.502 3.001z"/>
+            </svg>
+            <strong>Role :</strong> {{this.obj.role}}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Fermer</button>
+</div>

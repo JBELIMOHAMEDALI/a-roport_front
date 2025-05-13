@@ -1,0 +1,65 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{ title }}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<!-- Modal Body: Check if 'obj' exists before displaying content -->
+<div class="modal-body d-flex justify-content-center">
+  <div class="card mb-3" style="max-width: 700px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+      <div class="row g-0">
+          <!-- Fixed image size with object-fit for consistent display -->
+          <div class="col-md-5 d-flex align-items-center justify-content-center">
+              <img src="{{ obj?.imagePath }}" class="img-fluid rounded-start" alt="Product image" 
+                   style="height: 250px; width: 100%; object-fit: contain; border-radius: 10px;">
+          </div>
+          <div class="col-md-7">
+              <div class="card-body">
+                <br>
+                <br>
+                <br>
+                  <h5 class="card-title text-primary">{{ obj?.name }}</h5>
+                  <!-- Wrapping description with proper spacing -->
+                  <p class="card-text text-muted fs-3" style="white-space: normal; word-break: break-word; hyphens: auto;">
+                    {{ obj?.description }}
+                </p>
+                
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- Modal Body: Table -->
+<div *ngIf="obj" class="modal-body d-flex justify-content-center">
+  <div class="table-responsive" style="max-width: 700px;">
+      <table class="table table-bordered align-middle text-center" style="border: 1px solid black; border-radius: 10px;">
+          <thead style="background-color: #4e73df; color: white; border-radius: 10px;">
+              <tr>
+                  <th scope="col">N°</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">TVA</th>
+                  <th scope="col">Price + TVA</th>
+                  <th scope="col">Category</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td>{{ obj?.id }}</td>
+                  <td>{{ obj?.name }}</td>
+                  <td style="background-color: #f8f9fc;">{{ obj?.price + ' DT' }}</td>
+                  <td style="background-color: #f8f9fc;">{{ obj?.tva + ' %' }}</td>
+                  <td style="background-color: #f8f9fc;">{{ obj?.priceWithTva + ' DT' }}</td>
+                  <td>{{ obj?.category?.name }}</td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
+</div>
+
+<!-- Modal Footer -->
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Fermer</button>
+</div>

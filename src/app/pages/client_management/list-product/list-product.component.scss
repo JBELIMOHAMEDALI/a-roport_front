@@ -1,0 +1,71 @@
+/* Cards */
+.card {
+    height: 100%; /* Ensures all cards have equal height */
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px; /* Rounded corners */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+}
+
+/* Card image */
+.card-img-top {
+    height: 250px; /* Uniform height for images */
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+/* Card text */
+.card-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Limits the text to 2 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Adds the ellipsis (...) */
+    height: 3em; /* Ensures consistent height for the text */
+}
+
+/* Card Body */
+.card-body {
+    padding: 20px; /* Add some padding */
+    flex-grow: 1; /* Ensures the card body takes the remaining space */
+    display: flex;
+    flex-direction: column;
+}
+
+.card-body .btn {
+    margin-top: auto; /* Button stays at the bottom */
+}
+
+.btn-primary {
+    border-radius: 50px; /* Rounded button for a modern look */
+}
+
+/* Responsive grid system */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.col-md-3, .col-sm-6, .col-xs-12 {
+    max-width: 25%; /* 4 columns in a row */
+}
+
+@media (max-width: 768px) {
+    .col-md-3 {
+        max-width: 50%; /* 2 columns in a row on small devices */
+    }
+}
+
+@media (max-width: 576px) {
+    .col-md-3, .col-sm-6, .col-xs-12 {
+        max-width: 100%; /* 1 column in a row on very small devices */
+    }
+}

@@ -1,0 +1,95 @@
+/* Cards */
+.card {
+    height: 100%; /* Ensures all cards have equal height */
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px; /* Rounded corners */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05); /* Dual-layer shadow */
+    background-color: #fff; /* Ensure clear white background */
+    color: #333; /* Darker text for better readability */
+    padding: 20px;
+    border: 1px solid #ddd; /* Added light border */
+}
+
+/* Hover effect */
+.card:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15), 0 8px 16px rgba(0, 0, 0, 0.1); /* Stronger shadow on hover */
+    border: 1px solid #bbb; /* Darker border on hover */
+}
+
+/* Card image */
+.card-img-top {
+    height: 250px; /* Uniform height for images */
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+/* Card title */
+.card-title {
+    font-size: 1.25rem; /* Increased size for better clarity */
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* Card text */
+.card-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Limits the text to 2 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Adds the ellipsis (...) */
+    height: 3em; /* Ensures consistent height for the text */
+    margin-bottom: 10px;
+    text-align: center; /* Center align the text for better balance */
+}
+
+/* Rating stars */
+.bi-star-fill, .bi-star-half, .bi-star {
+    color: #f0c420; /* Yellow stars for clarity */
+}
+
+/* Card Body */
+.card-body {
+    padding: 20px; /* Add some padding */
+    flex-grow: 1; /* Ensures the card body takes the remaining space */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Button styling */
+.card-body .btn {
+    margin-top: auto; /* Button stays at the bottom */
+    border-radius: 50px; /* Rounded button for a modern look */
+    background-color: #007bff; /* Blue button */
+    color: #fff; /* White text */
+    font-weight: bold;
+    padding: 10px 20px;
+    width: 100%; /* Full width button */
+    text-align: center;
+}
+
+/* Responsive grid system */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.col-md-3, .col-sm-6, .col-xs-12 {
+    max-width: 25%; /* 4 columns in a row */
+}
+
+@media (max-width: 768px) {
+    .col-md-3 {
+        max-width: 50%; /* 2 columns in a row on small devices */
+    }
+}
+@media (max-width: 576px) {
+    .col-md-3, .col-sm-6, .col-xs-12 {
+        max-width: 100%; /* 1 column in a row on very small devices */
+    }
+}

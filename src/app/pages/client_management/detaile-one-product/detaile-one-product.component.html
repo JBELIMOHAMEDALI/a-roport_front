@@ -1,0 +1,26 @@
+<main class="container" style="display: flex; background-color: white; padding: 40px; height: 80vh; align-items: center; gap: 40px;">
+  <!-- Left Column / Product Image -->
+  <div class="left-column card shadow-lg" style="flex: 1; padding: 20px;border:black;">
+    <div class="card-body d-flex justify-content-center align-items-center">
+      <img data-image="red" class="active product-image" [src]="proudactObject.imagePath" alt="Product Image" style="max-width: 100%; height: auto; border-radius: 15px;">
+    </div>
+  </div>
+
+  <!-- Right Column -->
+  <div class="right-column" style="flex: 1; padding-left: 40px;">
+    
+    <!-- Product Description -->
+    <div class="product-description" style="max-width: 600px; margin-bottom: 20px;">
+      <h1 style="font-size: 42px; font-weight: bold; color: #2c3e50;">{{this.proudactObject.name}}</h1>
+      <p style="font-size: 16px; color: #555; word-wrap: break-word; line-height: 1.6; max-width: 90%;">{{this.proudactObject.description}}</p>
+    </div>
+
+    <!-- Product Pricing -->
+    <div class="product-price" style="margin-top: 30px;">
+      <span style="font-size: 28px; font-weight: bold; color: #333;">{{this.proudactObject.priceWithTva +'DT'}}</span>
+      <button class="cart-btn" (click)="addToCared()" style="padding: 15px 30px; background-color: #28a745; color: white; border: none; margin-left: 30px; border-radius: 8px; cursor: pointer; font-size: 18px; font-weight: bold;">
+        Add to cart
+      </button>
+    </div>
+  </div>
+</main>
