@@ -46,6 +46,8 @@ import { ListAvisForAdminComponent } from './pages/admin_management/list-avis-fo
 import { DetailseAvisAdminComponent } from './pages/admin_management/detailse-avis-admin/detailse-avis-admin.component';
 import { AddCommanterComponent } from './pages/client_management/poupup/add-commanter/add-commanter.component';
 import { FirestConnectionComponent } from './pages/firest-connection/firest-connection.component';
+import { FooterComponent } from './pages/home_page/footer/footer.component';
+import { HeaderComponent } from './pages/home_page/header/header.component';
 
 
 @NgModule({
@@ -83,6 +85,8 @@ import { FirestConnectionComponent } from './pages/firest-connection/firest-conn
     DetailseAvisAdminComponent,
     AddCommanterComponent,
     FirestConnectionComponent,
+    FooterComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
