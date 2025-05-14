@@ -8,12 +8,12 @@ import { NgForm } from '@angular/forms';
 import Observer from '../../../../service/observer';
 
 @Component({
-  selector: 'app-categories',
-  templateUrl: './categories.component.html',
-  styleUrls: ['./categories.component.scss']
+  selector: 'app-user-role',
+  templateUrl: './user-role.component.html',
+  styleUrls: ['./user-role.component.scss']
 })
-export class CategoriesComponent implements OnInit {
-  @Input() title;
+export class UserRoleComponent implements OnInit {
+@Input() title;
   @Input() add;//de l'instance openAdd du composant list-patient
   @Input() obj;
   model: any = {}
@@ -38,13 +38,10 @@ export class CategoriesComponent implements OnInit {
 
   async Onsubmit(f:NgForm){
     if(this.add){
-      const payload={...f.value,"magazin": {"id": 1}};
-    
-console.log(payload);
-
-      return
+      const payload={...f.value};
+   
     this.backendService
-        .post(`${environment.apiUrl}/categories`, payload)
+        .post(`${environment.apiUrl}/roles`, payload)
         .subscribe(new Observer(
           this.router,// just un class dans angular
              null,//target : lin eli machilou
@@ -57,7 +54,7 @@ console.log(payload);
       //cree un obj payload comme lajout mais inclut l'id du patient
       let payload = { ...f.value,patientId:this.obj.id};
     this.backendService
-      .put(`${environment.apiUrl}/categories/${this.obj.id}`, payload)
+      .put(`${environment.apiUrl}/roles/${this.obj.id}`, payload)
       .subscribe(
         new Observer(
           this.router,

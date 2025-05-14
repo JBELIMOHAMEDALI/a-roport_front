@@ -23,11 +23,21 @@ import { DetailseAvisAdminComponent } from "./pages/admin_management/detailse-av
 import { AuthGuard } from "./guards/auth.guard";
 import { AccessGuard } from "./guards/access.guard";
 import { FirestConnectionComponent } from "./pages/firest-connection/firest-connection.component";
+import { ProductListComponent } from "./pages/home_page/product-list/product-list.component";
+import { UserRoleListComponent } from "./pages/admin_management/user-role-list/user-role-list.component";
 
 const routes: Routes = [
-  { path: "", component: FirestPagesComponent },
-  { path: "signin", component: SigninComponent, canActivate: [AuthGuardLogin] },
-  { path: "signup", component: RegComponent, canActivate: [AuthGuardLogin] },
+  { 
+    path: '', 
+    component: FirestPagesComponent, 
+    canActivate: [AuthGuardLogin], 
+    children: [
+      { path: '', component: SigninComponent, canActivate: [AuthGuardLogin] } ,
+      { path: 'product', component: ProductListComponent, canActivate: [AuthGuardLogin] } ,
+      { path: 'login', component: SigninComponent, canActivate: [AuthGuardLogin] } ,
+      { path: "signup", component: RegComponent, canActivate: [AuthGuardLogin] },
+    ]
+  },
   { path: "firest_Connection", component: FirestConnectionComponent, canActivate: [AuthGuardLogin] },
   {
     path: "dashboard",
@@ -90,12 +100,18 @@ const routes: Routes = [
         path: "avisAdmin", component: ListAvisForAdminComponent,
         data: { role: ["ADMIN"] },
       },
+            {
+        path: "role_management", component: UserRoleListComponent,
+        data: { role: ["ADMIN"] },
+      },
       {
         path: "avisAdminDetailse/:id", component: DetailseAvisAdminComponent,
         data: { role: ["ADMIN"] },
       },
     ],
   },
+    { path: '**', redirectTo: '' }  // Catch-all route
+
 ];
 
 @NgModule({

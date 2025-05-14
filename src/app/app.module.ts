@@ -48,6 +48,11 @@ import { AddCommanterComponent } from './pages/client_management/poupup/add-comm
 import { FirestConnectionComponent } from './pages/firest-connection/firest-connection.component';
 import { FooterComponent } from './pages/home_page/footer/footer.component';
 import { HeaderComponent } from './pages/home_page/header/header.component';
+import { ShopListComponent } from './pages/home_page/shop-list/shop-list.component';
+import { ProductListComponent } from './pages/home_page/product-list/product-list.component';
+import { ProductDetailesListComponent } from './pages/home_page/product-detailes-list/product-detailes-list.component';
+import { UserRoleListComponent } from './pages/admin_management/user-role-list/user-role-list.component';
+import { UserRoleComponent } from './pages/admin_management/popup/user-role/user-role.component';
 
 
 @NgModule({
@@ -87,6 +92,11 @@ import { HeaderComponent } from './pages/home_page/header/header.component';
     FirestConnectionComponent,
     FooterComponent,
     HeaderComponent,
+    ShopListComponent,
+    ProductListComponent,
+    ProductDetailesListComponent,
+    UserRoleListComponent,
+    UserRoleComponent,
   ],
   imports: [
     BrowserModule,
@@ -114,7 +124,8 @@ import { HeaderComponent } from './pages/home_page/header/header.component';
     OrdersAffectesLivreurComponent,
     InfoUserComponent,
     ChangeStatusOrsdresComponent,
-    AddCommanterComponent
+    AddCommanterComponent,
+    UserRoleComponent
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [

@@ -43,6 +43,8 @@ export class UserAccountManagementComponent implements OnInit {
     this.backendService.get(`${environment.apiUrl + '/admin/users'}`).subscribe(
       new Observer().OBSERVER_GET((response) => {
         this.listtUsers = response.rows;
+        console.log(this.listtUsers);
+        
       })
     );
   }
@@ -62,7 +64,7 @@ export class UserAccountManagementComponent implements OnInit {
   openAdd(){
     const modalRef = this.modalService.open(UsersComponent);
     modalRef.componentInstance.add = false;
-    modalRef.componentInstance.title = "Add Delivery Man";
+    modalRef.componentInstance.title = "Add User Store";
     modalRef.componentInstance.add = true;//pour transmettre des donnes a la fenêtre modale qui sera affiche
   }
   openUpdate(obj){

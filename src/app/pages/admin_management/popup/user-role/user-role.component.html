@@ -1,0 +1,28 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{title}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span><!-- l'icone X (croix) -->
+    </button>
+</div>
+<div class="modal-body">
+    <form class="form" name="form" #f="ngForm" (ngSubmit)="this.Onsubmit(f)">
+
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label for="inputEmail4">Designation</label>
+                <input type="text" class="form-control" id="name" name="name" ngModel [(ngModel)]="this.model.name"
+                    #name="ngModel" placeholder="Designation" required>
+                <span *ngIf="name.touched && name.errors?.required" class="text-danger">Designation is
+                    required</span>
+            </div>
+        </div>
+
+
+        <div class="modal-footer">
+            <button *ngIf="this.add==true" type="submit" [disabled]="f.invalid" class="btn btn-primary">Add</button>
+            <button *ngIf="this.add==false" type="submit" [disabled]="f.invalid" class="btn btn-warning">Edit</button>
+            <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+        </div>
+    </form>
+
+</div>

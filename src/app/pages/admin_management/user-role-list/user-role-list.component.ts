@@ -7,15 +7,16 @@ import { environment } from '../../../../environments/environment';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import swal from 'sweetalert';
-import { CategoriesComponent } from '../popup/categories/categories.component';
+
+import { UserRoleComponent } from '../popup/user-role/user-role.component';
 
 @Component({
-  selector: 'app-categories-account-management',
-  templateUrl: './categories-account-management.component.html',
-  styleUrls: ['./categories-account-management.component.scss']
+  selector: 'app-user-role-list',
+  templateUrl: './user-role-list.component.html',
+  styleUrls: ['./user-role-list.component.scss']
 })
-export class CategoriesAccountManagementComponent implements OnInit {
-  term: any;
+export class UserRoleListComponent implements OnInit {
+ term: any;
   p: number;
   page = 1;
   pageSize = 5;
@@ -37,24 +38,23 @@ export class CategoriesAccountManagementComponent implements OnInit {
   }
   getListCatgory() {
     // const docId = "InnPv3DULUxZZvwYCgym";
-    // const docId = "InnPv3DULUxZZvwYCgym";
-    this.backendService.get(`${environment.apiUrl + '/categories'}`).subscribe(
+    this.backendService.get(`${environment.apiUrl + '/roles'}`).subscribe(
       new Observer().OBSERVER_GET((response) => {
         this.categoriesList = response.rows;
       })
     );
   }
   openAdd(){
-    const modalRef = this.modalService.open(CategoriesComponent);
+    const modalRef = this.modalService.open(UserRoleComponent);
     //modalRef.componentInstance.title = "Info Offre"; //aleh hethi ??
     modalRef.componentInstance.add = true;//indiquer au composant qil s'agit d'une operation d'ajout
-    modalRef.componentInstance.title = "Add a new Categorie";// le titre de l'instance du composant
+    modalRef.componentInstance.title = "Add a new Role";// le titre de l'instance du composant
   
   }
   openUpdate(obj:any){
-    const modalRef = this.modalService.open(CategoriesComponent);
+    const modalRef = this.modalService.open(UserRoleComponent);
     modalRef.componentInstance.add = false;
-    modalRef.componentInstance.title = "Update Categorie";
+    modalRef.componentInstance.title = "Update Role";
     modalRef.componentInstance.obj = obj;//pour transmettre des donnes a la fenêtre modale qui sera affiche
   
   }
@@ -68,7 +68,7 @@ export class CategoriesAccountManagementComponent implements OnInit {
       buttons: ["Cancel", "Confirm"],
     }).then((result) => {
       if (result) {
-        const point = environment.apiUrl + "/categories"
+        const point = environment.apiUrl + "/roles"
         this.backendService
           .delete(`${point}/${id}`)
           .subscribe(

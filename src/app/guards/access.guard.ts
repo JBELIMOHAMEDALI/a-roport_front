@@ -21,15 +21,15 @@ export class AccessGuard implements CanActivateChild {
     if (roleFunction === undefined) {
       return of(true);
     }
-    const { role,connection_otp } = this.tokenService.getDecodedUser();
-    
+    const { role,connectionOtp } = this.tokenService.getDecodedUser();
+    console.log(this.tokenService.getDecodedUser())
     // const allowedRoles = userSession.profile?.role ?? [];
     const hasRole = roleFunction.some(roleData => roleData == role);
     // const hasRole = role === roleFunction;
-    if (hasRole && connection_otp) {
+    if (hasRole && connectionOtp) {
       return of(true);
     } else {
-      if(!connection_otp){
+      if(!connectionOtp){
         this.router.navigate(["/firest_Connection"]);
 
       }else{

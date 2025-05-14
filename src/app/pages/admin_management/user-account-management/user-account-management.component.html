@@ -43,10 +43,10 @@
         <div>
         </div>
         <div style="margin-right: 50px;">
-          <button type="button" class="btn btn-primary btn-sm" (click)="openAdd()" style="background-color: #5256ad; border-color: #5256ad;">
+          <!-- <button type="button" class="btn btn-primary btn-sm" (click)="openAdd()" style="background-color: #5256ad; border-color: #5256ad;">
             New Delivery Man
         </button>
-        <br><br>
+        <br><br> -->
         </div>
     </div>
 
@@ -57,12 +57,9 @@
         </div>
         
         <div style="margin-right: 50px;">
-          <select id="inputState" class="form-control" (change)="onRoleSelected($event.target.value)" >
-            <option value="-1" disabled selected>Choose Role</option>
-            <option value="1">All</option>
-            <option value="USER">User</option>
-            <option value="DELIVERYMAN">Deliveryman</option>
-        </select>
+          <button type="button" class="btn btn-primary btn-sm" (click)="openAdd()" style="background-color: #5256ad; border-color: #5256ad;">
+            New User Store
+        </button>
         
         </div>
     </div>
@@ -95,7 +92,7 @@
               <td>{{item.firstName}}</td>
               <td>{{item.lastName}}</td>
               <td>{{item.email}}</td>
-              <td style="background-color: aquamarine;">{{item.role}}</td>
+              <td style="background-color: aquamarine;">{{item.role.name}}</td>
               <td>
 
 

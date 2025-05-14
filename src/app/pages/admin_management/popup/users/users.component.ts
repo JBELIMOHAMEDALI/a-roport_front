@@ -47,7 +47,7 @@ export class UsersComponent implements OnInit {
 
   async Onsubmit(f: NgForm) {
     if (this.add) {
-      let payload = { ...f.value,role: "DELIVERYMAN",password:"%Azerty123",imagePath:"http://res.cloudinary.com/dzdsxiaeb/image/upload/v1729759186/uiezd5rg5lls97v4bf7p.png" };
+      let payload = { ...f.value,role: "STOR",password:"%Azerty123",imagePath:"http://res.cloudinary.com/dzdsxiaeb/image/upload/v1729759186/uiezd5rg5lls97v4bf7p.png" };
 
       this.backendService
       .post(`${environment.apiUrl}/auth/register`, payload)

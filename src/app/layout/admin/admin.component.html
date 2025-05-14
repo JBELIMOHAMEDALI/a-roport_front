@@ -210,6 +210,13 @@
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </li>
+                   <li appAccordionLink>
+                    <a  *ngIf="this.userLoggedIn?.role=='ADMIN'" [routerLink]="['/dashboard/role_management']" target="_self" appAccordionToggle>
+                      <span class="pcoded-micon"><i class="ti-bar-chart-alt"></i></span>
+                      <span class="pcoded-mtext">Role</span>
+                      <span class="pcoded-mcaret"></span>
+                    </a>
+                  </li>
                 </ul>
               </div>
             </perfect-scrollbar>
