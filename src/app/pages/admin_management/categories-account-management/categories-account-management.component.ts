@@ -36,8 +36,6 @@ export class CategoriesAccountManagementComponent implements OnInit {
 
   }
   getListCatgory() {
-    // const docId = "InnPv3DULUxZZvwYCgym";
-    // const docId = "InnPv3DULUxZZvwYCgym";
     this.backendService.get(`${environment.apiUrl + '/categories'}`).subscribe(
       new Observer().OBSERVER_GET((response) => {
         this.categoriesList = response.rows;
@@ -46,7 +44,6 @@ export class CategoriesAccountManagementComponent implements OnInit {
   }
   openAdd(){
     const modalRef = this.modalService.open(CategoriesComponent);
-    //modalRef.componentInstance.title = "Info Offre"; //aleh hethi ??
     modalRef.componentInstance.add = true;//indiquer au composant qil s'agit d'une operation d'ajout
     modalRef.componentInstance.title = "Add a new Categorie";// le titre de l'instance du composant
   
