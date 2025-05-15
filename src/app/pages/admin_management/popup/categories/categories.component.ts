@@ -38,11 +38,10 @@ export class CategoriesComponent implements OnInit {
 
   async Onsubmit(f:NgForm){
     if(this.add){
-      const payload={...f.value,"magazin": {"id": 1}};
-    
-console.log(payload);
-
-      return
+      const payload={
+  "name": f.value.name,
+  "magazinId": 1
+};
     this.backendService
         .post(`${environment.apiUrl}/categories`, payload)
         .subscribe(new Observer(
