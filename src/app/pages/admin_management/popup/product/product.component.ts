@@ -109,9 +109,8 @@ export class ProductComponent implements OnInit {
     }
 
     // Adjust other payload values
-    payload.category = {
-      id: payload.category,
-    };
+    payload.categoryId =  payload.category;
+    payload.magazinId =  1;
     payload.tva = payload.tva / 100;
 
     // Differentiate between adding and editing a product

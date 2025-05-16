@@ -147,42 +147,44 @@
                     </a>
                   </li>
                   <li appAccordionLink>
-                    <a  *ngIf="this.userLoggedIn?.role=='ADMIN'" [routerLink]="['/dashboard/user_account_management']" target="_self" appAccordionToggle>
+                    <!-- *ngIf="this.userLoggedIn?.role=='ADMIN'" -->
+                    <a   [routerLink]="['/dashboard/user_account_management']" target="_self" appAccordionToggle>
                       <span class="pcoded-micon"><i class="ti-user"></i></span>
                       <span class="pcoded-mtext">User Account Management</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </li>
                   <li appAccordionLink>
-                    <a  *ngIf="this.userLoggedIn?.role=='ADMIN'" [routerLink]="['/dashboard/product_management']" target="_self" appAccordionToggle>
+                    <a   [routerLink]="['/dashboard/product_management']" target="_self" appAccordionToggle>
                       <span class="pcoded-micon"><i class="ti-archive"></i></span>
                       <span class="pcoded-mtext">Product Management</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </li>
                   <li appAccordionLink>
-                    <a  *ngIf="this.userLoggedIn?.role=='ADMIN'" [routerLink]="['/dashboard/categories_account_management']" target="_self" appAccordionToggle>
+                    <a   [routerLink]="['/dashboard/categories_account_management']" target="_self" appAccordionToggle>
                       <span class="pcoded-micon"><i class="ti-harddrives"></i></span>
                       <span class="pcoded-mtext">Categories Management</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </li>
                   <li appAccordionLink>
-                    <a  *ngIf="this.userLoggedIn?.role=='USER' || this.userLoggedIn?.role=='DELIVERYMAN'" [routerLink]="['/dashboard/product_list']" target="_self" appAccordionToggle>
+                    <!-- *ngIf="this.userLoggedIn?.role=='USER'  -->
+                    <a    [routerLink]="['/dashboard/product_list']" target="_self" appAccordionToggle>
                       <span class="pcoded-micon"><i class="ti-dropbox-alt"></i></span>
                       <span class="pcoded-mtext">Product List</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </li>
                   <li appAccordionLink>
-                    <a  *ngIf="this.userLoggedIn?.role=='USER' || this.userLoggedIn?.role=='DELIVERYMAN'" [routerLink]="['/dashboard/my_cart']" target="_self" appAccordionToggle>
+                    <a    [routerLink]="['/dashboard/my_cart']" target="_self" appAccordionToggle>
                       <span class="pcoded-micon"><i class="ti-shopping-cart"></i></span>
                       <span class="pcoded-mtext">My Cart</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </li>
                   <li appAccordionLink>
-                    <a  *ngIf="this.userLoggedIn?.role=='USER' || this.userLoggedIn?.role=='DELIVERYMAN'" [routerLink]="['/dashboard/my_commande']" target="_self" appAccordionToggle>
+                    <a    [routerLink]="['/dashboard/my_commande']" target="_self" appAccordionToggle>
                       <span class="pcoded-micon"><i class="ti-package"></i></span>
                       <span class="pcoded-mtext">My Order</span>
                       <span class="pcoded-mcaret"></span>
@@ -190,28 +192,28 @@
                   </li>
 
                   <li appAccordionLink>
-                    <a  *ngIf="this.userLoggedIn?.role=='ADMIN'" [routerLink]="['/dashboard/commande_list']" target="_self" appAccordionToggle>
+                    <a   [routerLink]="['/dashboard/commande_list']" target="_self" appAccordionToggle>
                       <span class="pcoded-micon"><i class="ti-list"></i></span>
                       <span class="pcoded-mtext">Order List</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </li>
                   <li appAccordionLink>
-                    <a  *ngIf="this.userLoggedIn?.role=='DELIVERYMAN'" [routerLink]="['/dashboard/list_affected_orderesLiv']" target="_self" appAccordionToggle>
+                    <a   [routerLink]="['/dashboard/list_affected_orderesLiv']" target="_self" appAccordionToggle>
                       <span class="pcoded-micon"><i class="ti-layout-grid2"></i></span>
                       <span class="pcoded-mtext">Delivery Order</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </li>
                   <li appAccordionLink>
-                    <a  *ngIf="this.userLoggedIn?.role=='ADMIN'" [routerLink]="['/dashboard/avisAdmin']" target="_self" appAccordionToggle>
+                    <a   [routerLink]="['/dashboard/avisAdmin']" target="_self" appAccordionToggle>
                       <span class="pcoded-micon"><i class="ti-bar-chart-alt"></i></span>
                       <span class="pcoded-mtext">Reviews</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </li>
                    <li appAccordionLink>
-                    <a  *ngIf="this.userLoggedIn?.role=='ADMIN'" [routerLink]="['/dashboard/role_management']" target="_self" appAccordionToggle>
+                    <a   [routerLink]="['/dashboard/role_management']" target="_self" appAccordionToggle>
                       <span class="pcoded-micon"><i class="ti-bar-chart-alt"></i></span>
                       <span class="pcoded-mtext">Role</span>
                       <span class="pcoded-mcaret"></span>

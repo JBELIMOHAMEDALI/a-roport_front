@@ -50,7 +50,7 @@ const routes: Routes = [
       {
         path: "profil",
         component: ProfileComponent,
-        data: { role: ["USER", "DELIVERYMAN", "ADMIN"] },
+        // data: { role: ["USER", "DELIVERYMAN", "ADMIN"] },
       },
       // { path: "simple", component: SimplePageComponent ,
       //    data: { role: "Medecin" },
@@ -58,55 +58,55 @@ const routes: Routes = [
 
       {
         path: "user_account_management", component: UserAccountManagementComponent,
-        data: { role: ["ADMIN"] },
+        // data: { role: ["ADMIN"] },
       },
       {
         path: "categories_account_management", component: CategoriesAccountManagementComponent,
-        data: { role: ["ADMIN"] },
+        // data: { role: ["ADMIN"] },
       },
       {
         path: "product_management", component: ProductManagementComponent,
-        data: { role: ["ADMIN"] },
+        // data: { role: ["ADMIN"] },
       },
       {
         path: "my_cart", component: CartListComponent,
-        data: { role: ["USER", "DELIVERYMAN"] },
+        // data: { role: ["USER", "DELIVERYMAN"] },
       },
       {
         path: "product_list", component: ListProductComponent,
-        data: { role: ["USER", "DELIVERYMAN"] },
+        // data: { role: ["USER", "DELIVERYMAN"] },
       },
       {
         path: "detaile_one_product/:id", component: DetaileOneProductComponent,
-        data: { role: ["USER", "DELIVERYMAN"] },
+        // data: { role: ["USER", "DELIVERYMAN"] },
       },
       {
         path: "my_commande", component: ListMyCommandeComponent,
-        data: { role: ["USER", "DELIVERYMAN"] },
+        // data: { role: ["USER", "DELIVERYMAN"] },
       },
       {
         path: "commande_list", component: CommandeManagmentComponent,
-        data: { role: ["ADMIN"] },
+        // data: { role: ["ADMIN"] },
       },
       {
         path: "list_affected_orderesLiv", component: ListOrdersComponent,
-        data: { role: ["DELIVERYMAN"] },
+        // data: { role: ["DELIVERYMAN"] },
       },
       {
         path: "facture/:id", component: FactureComponent,
-        data: { role: ["USER", "DELIVERYMAN", "ADMIN"] },
+        // data: { role: ["USER", "DELIVERYMAN", "ADMIN"] },
       },
       {
         path: "avisAdmin", component: ListAvisForAdminComponent,
-        data: { role: ["ADMIN"] },
+        // data: { role: ["ADMIN"] },
       },
             {
         path: "role_management", component: UserRoleListComponent,
-        data: { role: ["ADMIN"] },
+        // data: { role: ["ADMIN"] },
       },
       {
         path: "avisAdminDetailse/:id", component: DetailseAvisAdminComponent,
-        data: { role: ["ADMIN"] },
+        // data: { role: ["ADMIN"] },
       },
     ],
   },
