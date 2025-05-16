@@ -1,32 +1,28 @@
 import { Component, OnInit } from '@angular/core';
-import { animate, style, transition, trigger } from '@angular/animations';
 import { ActivatedRoute } from '@angular/router';
 import { SharedService } from './../../../service/shared.service';
 import { BackendService } from '../../../service/backend.service';
-import { DataService } from '../../../service/data.service';
 import Observer from '../../../service/observer';
 import { environment } from '../../../../environments/environment';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import swal from 'sweetalert';
-import { TokenStorageService } from './../../../service/token-storage.service';
-import { CategoriesComponent } from '../popup/categories/categories.component';
-import { ProductComponent } from '../popup/product/product.component';
-import { ProductInfoComponent } from '../popup/product-info/product-info.component';
+
+import { UserRoleComponent } from '../popup/user-role/user-role.component';
+import { StoreMangComponent } from '../popup/store-mang/store-mang.component';
 
 @Component({
-  selector: 'app-product-management',
-  templateUrl: './product-management.component.html',
-  styleUrls: ['./product-management.component.scss']
+  selector: 'app-store-management',
+  templateUrl: './store-management.component.html',
+  styleUrls: ['./store-management.component.scss']
 })
-export class ProductManagementComponent implements OnInit {
-  term: any;
+export class StoreManagementComponent implements OnInit {
+term: any;
   p: number;
   page = 1;
   pageSize = 5;
   pageSizes = [5, 10, 15];
-  productsList: any[] = []
-  selectedImage: string = '';
+  categoriesList: any[] = []
 
   constructor(
     private route: ActivatedRoute,
@@ -38,30 +34,29 @@ export class ProductManagementComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getListProducts()
+    this.getListStore()
 
   }
-  getListProducts() {
-    // const docId = "InnPv3DULUxZZvwYCgym";
-    this.backendService.get(`${environment.apiUrl + '/products'}`).subscribe(
+  getListStore() {
+    this.backendService.get(`${environment.apiUrl + '/magazins'}`).subscribe(
       new Observer().OBSERVER_GET((response) => {
-        this.productsList = response.rows;
+        this.categoriesList = response.rows;
       })
     );
   }
   openAdd(){
-    const modalRef = this.modalService.open(ProductComponent);
+    const modalRef = this.modalService.open(StoreMangComponent);
     //modalRef.componentInstance.title = "Info Offre"; //aleh hethi ??
     modalRef.componentInstance.add = true;//indiquer au composant qil s'agit d'une operation d'ajout
-    modalRef.componentInstance.title = "Add a new Product";// le titre de l'instance du composant
+    modalRef.componentInstance.title = "Add a new Store";// le titre de l'instance du composant
   
   }
   openUpdate(obj:any){
     console.log(obj);
     
-    const modalRef = this.modalService.open(ProductComponent);
+    const modalRef = this.modalService.open(StoreMangComponent);
     modalRef.componentInstance.add = false;
-    modalRef.componentInstance.title = "Update Product";
+    modalRef.componentInstance.title = "Update Store";
     modalRef.componentInstance.obj = obj;//pour transmettre des donnes a la fenêtre modale qui sera affiche
   
   }
@@ -75,7 +70,7 @@ export class ProductManagementComponent implements OnInit {
       buttons: ["Cancel", "Confirm"],
     }).then((result) => {
       if (result) {
-        const point = environment.apiUrl + "/products"
+        const point = environment.apiUrl + "/roles"
         this.backendService
           .delete(`${point}/${id}`)
           .subscribe(
@@ -94,17 +89,6 @@ export class ProductManagementComponent implements OnInit {
   handlePageSizeChange(event: any): void {
     this.pageSize = event.target.value;
     this.page = 1;
-  }
-
-  openInfo(item){
-    const modalRef = this.modalService.open(ProductInfoComponent, { size: 'lg', backdrop: 'static' });
-    modalRef.componentInstance.title = "Info Product";// le titre de l'instance du composant
-    modalRef.componentInstance.obj = item;// le titre de l'instance du composant
-  
-  }
-  openImageModal(imagePath: string, content: any) {
-    this.selectedImage = imagePath;
-    this.modalService.open(content, { centered: true });
   }
   
 }

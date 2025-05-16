@@ -25,6 +25,7 @@ import { AccessGuard } from "./guards/access.guard";
 import { FirestConnectionComponent } from "./pages/firest-connection/firest-connection.component";
 import { ProductListComponent } from "./pages/home_page/product-list/product-list.component";
 import { UserRoleListComponent } from "./pages/admin_management/user-role-list/user-role-list.component";
+import { StoreManagementComponent } from "./pages/admin_management/store-management/store-management.component";
 
 const routes: Routes = [
   { 
@@ -58,6 +59,10 @@ const routes: Routes = [
 
       {
         path: "user_account_management", component: UserAccountManagementComponent,
+        // data: { role: ["ADMIN"] },
+      },
+            {
+        path: "store_management", component: StoreManagementComponent,
         // data: { role: ["ADMIN"] },
       },
       {

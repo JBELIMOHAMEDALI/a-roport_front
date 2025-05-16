@@ -8,14 +8,13 @@ import { NgForm } from '@angular/forms';
 import Observer from '../../../../service/observer';
 import { CloudinaryService } from '../../../../service/cloudinary.service';
 import { HttpClient, HttpEventType } from '@angular/common/http';
-
 @Component({
-  selector: 'app-product',
-  templateUrl: './product.component.html',
-  styleUrls: ['./product.component.scss']
+  selector: 'app-store-mang',
+  templateUrl: './store-mang.component.html',
+  styleUrls: ['./store-mang.component.scss']
 })
-export class ProductComponent implements OnInit {
-  categoriesList: any[] = [];
+export class StoreMangComponent implements OnInit {
+ storUserList: any[] = [];
   @Input() title: string;
   @Input() add: boolean; // Determines whether to add a new product
   @Input() obj: any; // Data object for product editing
@@ -47,20 +46,20 @@ export class ProductComponent implements OnInit {
 
   // Fetch list of categories
   getListCategory() {
-    this.backendService.get(`${environment.apiUrl + '/categories'}`).subscribe(
+    this.backendService.get(`${environment.apiUrl + '/admin/users/role/2'}`).subscribe(
       new Observer().OBSERVER_GET((response) => {
-        this.categoriesList = response.rows;
+        this.storUserList = response.rows;
       })
     );
   }
 
   // Populate product details when editing
   populateProductDetails() {
-    this.model.category = this.obj.category.id;
+    this.model.userId = this.obj.createdById;
     this.model.name = this.obj.name;
-    this.model.price = this.obj.price;
     this.model.description = this.obj.description;
-    this.model.tva = this.obj.tva * 100; // Convert to percentage for displaydescription
+    this.model.address = this.obj.address;
+    this.model.image = this.obj.image; // Convert to percentage for displaydescription
   }
   // Handle file selection
   onFileSelected(event: Event): void {
@@ -98,8 +97,6 @@ export class ProductComponent implements OnInit {
   // Handle form submission
   async Onsubmit(f: NgForm) {
     let payload = { ...f.value };
-    console.log(payload);
-    
     // Ensure image upload before proceeding
     if (this.selectedFile) {
       await this.uploadImage(); // Wait for image upload to complete
@@ -111,14 +108,10 @@ export class ProductComponent implements OnInit {
     }
 
     // Adjust other payload values
-    payload.categoryId =  payload.category;
-    payload.magazinId =  1;
-    payload.tva = payload.tva / 100;
-
     // Differentiate between adding and editing a product
     if (this.add) {
       this.backendService
-        .post(`${environment.apiUrl}/products`, payload)
+        .post(`${environment.apiUrl}/magazins`, payload)
         .subscribe(
           new Observer(
             this.router,

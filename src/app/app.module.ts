@@ -53,6 +53,8 @@ import { ProductListComponent } from './pages/home_page/product-list/product-lis
 import { ProductDetailesListComponent } from './pages/home_page/product-detailes-list/product-detailes-list.component';
 import { UserRoleListComponent } from './pages/admin_management/user-role-list/user-role-list.component';
 import { UserRoleComponent } from './pages/admin_management/popup/user-role/user-role.component';
+import { StoreManagementComponent } from './pages/admin_management/store-management/store-management.component';
+import { StoreMangComponent } from './pages/admin_management/popup/store-mang/store-mang.component';
 
 
 @NgModule({
@@ -97,6 +99,8 @@ import { UserRoleComponent } from './pages/admin_management/popup/user-role/user
     ProductDetailesListComponent,
     UserRoleListComponent,
     UserRoleComponent,
+    StoreManagementComponent,
+    StoreMangComponent,
   ],
   imports: [
     BrowserModule,
@@ -125,7 +129,7 @@ import { UserRoleComponent } from './pages/admin_management/popup/user-role/user
     InfoUserComponent,
     ChangeStatusOrsdresComponent,
     AddCommanterComponent,
-    UserRoleComponent
+    UserRoleComponent,StoreMangComponent
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [
