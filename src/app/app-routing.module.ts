@@ -26,6 +26,7 @@ import { FirestConnectionComponent } from "./pages/firest-connection/firest-conn
 import { ProductListComponent } from "./pages/home_page/product-list/product-list.component";
 import { UserRoleListComponent } from "./pages/admin_management/user-role-list/user-role-list.component";
 import { StoreManagementComponent } from "./pages/admin_management/store-management/store-management.component";
+import { ShopListComponent } from "./pages/home_page/shop-list/shop-list.component";
 
 const routes: Routes = [
   { 
@@ -34,7 +35,8 @@ const routes: Routes = [
     canActivate: [AuthGuardLogin], 
     children: [
       { path: '', component: SigninComponent, canActivate: [AuthGuardLogin] } ,
-      { path: 'product', component: ProductListComponent, canActivate: [AuthGuardLogin] } ,
+      { path: 'shop/:id', component: ProductListComponent, canActivate: [AuthGuardLogin] } ,
+      { path: 'shop', component: ShopListComponent, canActivate: [AuthGuardLogin] } ,
       { path: 'login', component: SigninComponent, canActivate: [AuthGuardLogin] } ,
       { path: "signup", component: RegComponent, canActivate: [AuthGuardLogin] },
     ]

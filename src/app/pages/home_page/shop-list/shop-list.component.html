@@ -1,1 +1,76 @@
-<p>shop-list works!</p>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<style>
+.product-image9 {
+  position: relative;
+  width: 100%;
+  height: 250px; /* Fixed height */
+  overflow: hidden;
+}
+
+.product-image9 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: all 0.3s ease-in-out;
+}
+
+.product-image9 .pic-2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.product-image9:hover .pic-2 {
+  opacity: 1;
+}
+</style>
+
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+<div class="container">
+     <br>
+ <br>
+<div class="text-center my-4">
+  <input
+    id="search"
+    type="text"
+    class="form-control d-inline-block"
+    style="width: 600px; border-radius: 20px; padding: 10px 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"
+    placeholder="Search..."
+    [(ngModel)]="term"
+  >
+</div>
+
+ <br>
+ <br>
+    <div class="row"  >
+        <div class="col-md-3 col-sm-6"*ngFor="let item of this.storeList | filter:term | slice: (page - 1) * pageSize: page * pageSize; let i = index">
+            <div class="product-grid9">
+                <div class="product-image9">
+                    <a [routerLink]="['/shop', item.id]">
+                                                <!-- <img class="pic-1" src="https://www.w3schools.com/bootstrap4/img_avatar4.png">
+
+                                                <img class="pic-2" src="https://www.w3schools.com/bootstrap4/img_avatar3.png"> -->
+                        <img class="pic-1" [src]="item.image"> 
+                        <img class="pic-2" src="../../../../assets/img.avif"> 
+
+                    </a>
+                    <a [routerLink]="['/shop', item.id]" class="fa fa-search product-full-view"></a>
+                </div>
+                <div class="product-content">
+
+                    <h3 class="title"><a [routerLink]="['/shop', item.id]">{{item.name}}</a></h3>
+                    <div class="price"> {{item.productsCount}} Available Product</div>
+                    <a class="add-to-cart" href="">VIEW DETAILS</a>
+                </div>
+            </div>
+        </div> 
+
+    </div>
+</div>
+<hr>

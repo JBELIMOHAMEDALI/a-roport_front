@@ -1,104 +1,191 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../../../../assets/firest_home/assets/css/fontawesome.css">
+    <link rel="stylesheet" href="../../../../assets/firest_home/assets/css/templatemo-sixteen.css">
+    <link rel="stylesheet" href="../../../../assets/firest_home/assets/css/owl.css">
 <!------ Include the above in your HEAD tag ---------->
+<style>
+  .right-image img {
+    width: 100%;
+    max-width: 500px;   /* largeur max de l'image */
+    height: 250px;       /* hauteur fixe pour harmoniser toutes les images */
+    object-fit: cover;   /* rogne l’image pour remplir sans déformer */
+    border-radius: 5px;  /* coins arrondis */
+    display: block;
+    background-color: #f8f9fa; /* couleur de fond discrète si l’image est transparente */
+  }
+</style>
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-<div class="container">
-    <h3 class="h3">shopping Demo-9 </h3>
-    <div class="row">
-        <div class="col-md-3 col-sm-6">
-            <div class="product-grid9">
-                <div class="product-image9">
-                    <a href="#">
-                        <img class="pic-1" src="https://www.w3schools.com/bootstrap4/img_avatar4.png">
-                        <img class="pic-2" src="https://www.w3schools.com/bootstrap4/img_avatar3.png">
-                    </a>
-                    <a href="#" class="fa fa-search product-full-view"></a>
-                </div>
-                <div class="product-content">
-                    <ul class="rating">
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                    </ul>
-                    <h3 class="title"><a href="#">Women's Top</a></h3>
-                    <div class="price"> $12.60 - $40.53</div>
-                    <a class="add-to-cart" href="">VIEW PRODUCTS</a>
-                </div>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+
+    <div class="best-features about-features">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="section-heading">
+              <h2>{{this.magazins.name}}</h2>
             </div>
-        </div> 
-        <div class="col-md-3 col-sm-6">
-            <div class="product-grid9">
-                <div class="product-image9">
-                    <a href="#">
-                        <img class="pic-1" src="https://www.w3schools.com/bootstrap4/img_avatar4.png">
-                        <img class="pic-2" src="https://www.w3schools.com/bootstrap4/img_avatar3.png">
-                    </a>
-                    <a href="#" class="fa fa-search product-full-view"></a>
-                </div>
-                <div class="product-content">
-                    <ul class="rating">
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star disable"></li>
-                        <li class="fa fa-star disable"></li>
-                    </ul>
-                    <h3 class="title"><a href="#">Men's Shirt</a></h3>
-                    <div class="price"> $10.20 </div>
-                    <a class="add-to-cart" href="">READ MORE</a>
-                </div>
+          </div>
+          <div class="col-md-6">
+            <div class="right-image">
+              <img [src]="this.magazins.image" alt="">
             </div>
+          </div>
+          <div class="col-md-6">
+            <div class="left-content">
+              <br><br>
+              <h4>Who we are &amp; What we do?</h4>
+              <p>{{this.magazins.description}}</p>
+
+            </div>
+          </div>
         </div>
-        <div class="col-md-3 col-sm-6">
-            <div class="product-grid9">
-                <div class="product-image9">
-                    <a href="#">
-                        <img class="pic-1" src="https://www.w3schools.com/bootstrap4/img_avatar4.png">
-                        <img class="pic-2" src="https://www.w3schools.com/bootstrap4/img_avatar3.png">
-                    </a>
-                    <a href="#" class="fa fa-search product-full-view"></a>
-                </div>
-                <div class="product-content">
-                    <ul class="rating">
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                    </ul>
-                    <h3 class="title"><a href="#">Women's Top</a></h3>
-                    <div class="price"> $12.60 - $40.53</div>
-                    <a class="add-to-cart" href="">VIEW PRODUCTS</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-6">
-            <div class="product-grid9">
-                <div class="product-image9">
-                    <a href="#">
-                        <img class="pic-1" src="https://www.w3schools.com/bootstrap4/img_avatar4.png">
-                        <img class="pic-2" src="https://www.w3schools.com/bootstrap4/img_avatar3.png">
-                    </a>
-                    <a href="#" class="fa fa-search product-full-view"></a>
-                </div>
-                <div class="product-content">
-                    <ul class="rating">
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                    </ul>
-                    <h3 class="title"><a href="#">Women's Top</a></h3>
-                    <div class="price"> $12.60 - $40.53</div>
-                    <a class="add-to-cart" href="">VIEW PRODUCTS</a>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
-</div>
+
+    
+    <div class="team-members">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="section-heading">
+              <h2>Our Products</h2>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="team-member">
+              <div class="thumb-container">
+                <img src="../../../../assets/images/avatar-2.jpg" alt="">
+                <div class="hover-effect">
+                  <div class="hover-content">
+                    <ul class="social-icons">
+                      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                      <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                      <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="down-content">
+                <h4>Johnny William</h4>
+                <span>CO-Founder</span>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing itaque corporis nulla.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="team-member">
+              <div class="thumb-container">
+                <img src="assets/images/team_02.jpg" alt="">
+                <div class="hover-effect">
+                  <div class="hover-content">
+                    <ul class="social-icons">
+                      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                      <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                      <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="down-content">
+                <h4>Karry Pitcher</h4>
+                <span>Product Expert</span>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing itaque corporis nulla.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="team-member">
+              <div class="thumb-container">
+                <img src="assets/images/team_03.jpg" alt="">
+                <div class="hover-effect">
+                  <div class="hover-content">
+                    <ul class="social-icons">
+                      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                      <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                      <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="down-content">
+                <h4>Michael Soft</h4>
+                <span>Chief Marketing</span>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing itaque corporis nulla.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="team-member">
+              <div class="thumb-container">
+                <img src="assets/images/team_04.jpg" alt="">
+                <div class="hover-effect">
+                  <div class="hover-content">
+                    <ul class="social-icons">
+                      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                      <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                      <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="down-content">
+                <h4>Mary Cool</h4>
+                <span>Product Specialist</span>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing itaque corporis nulla.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="team-member">
+              <div class="thumb-container">
+                <img src="assets/images/team_05.jpg" alt="">
+                <div class="hover-effect">
+                  <div class="hover-content">
+                    <ul class="social-icons">
+                      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                      <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                      <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="down-content">
+                <h4>George Walker</h4>
+                <span>Product Photographer</span>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing itaque corporis nulla.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="team-member">
+              <div class="thumb-container">
+                <img src="assets/images/team_06.jpg" alt="">
+                <div class="hover-effect">
+                  <div class="hover-content">
+                    <ul class="social-icons">
+                      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                      <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                      <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="down-content">
+                <h4>Kate Town</h4>
+                <span>General Manager</span>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing itaque corporis nulla.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 <hr>
