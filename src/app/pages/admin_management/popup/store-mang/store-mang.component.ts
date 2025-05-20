@@ -59,13 +59,13 @@ export class StoreMangComponent implements OnInit {
     this.model.name = this.obj.name;
     this.model.description = this.obj.description;
     this.model.address = this.obj.address;
-    this.model.image = this.obj.image; // Convert to percentage for displaydescription
   }
   // Handle file selection
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
       this.selectedFile = input.files[0];
+      
     }
   }
 
@@ -100,11 +100,11 @@ export class StoreMangComponent implements OnInit {
     // Ensure image upload before proceeding
     if (this.selectedFile) {
       await this.uploadImage(); // Wait for image upload to complete
-      payload.imagePath = this.imageUrl; // Set the uploaded image URL
+      payload.image = this.imageUrl; // Set the uploaded image URL
     } else if (!this.add && this.imageUrl) {
-      payload.imagePath = this.imageUrl; // Use the existing image URL for edits
+      payload.image = this.imageUrl; // Use the existing image URL for edits
     } else {
-      payload.imagePath = null; // No image uploaded or present
+      payload.image = null; // No image uploaded or present
     }
 
     // Adjust other payload values
@@ -126,15 +126,15 @@ export class StoreMangComponent implements OnInit {
 
       if (this.selectedFile) {
         await this.uploadImage(); // Wait for image upload to complete
-        payload.imagePath = this.imageUrl; // Set the uploaded image URL
+        payload.image = this.imageUrl; // Set the uploaded image URL
       } else if (!this.add && this.imageUrl) {
-        payload.imagePath = this.imageUrl; // Use the existing image URL for edits
+        payload.image = this.imageUrl; // Use the existing image URL for edits
       } else {
-        payload.imagePath = null; // No image uploaded or present
+        payload.image = null; // No image uploaded or present
       }
       payload.tva = payload.tva / 100;
       this.backendService
-        .put(`${environment.apiUrl}/products/${this.obj.id}`, payload)
+        .put(`${environment.apiUrl}/magazins/${this.obj.id}`, payload)
         .subscribe(
           new Observer(
             this.router,

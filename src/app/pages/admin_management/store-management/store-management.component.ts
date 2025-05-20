@@ -23,6 +23,7 @@ term: any;
   pageSize = 5;
   pageSizes = [5, 10, 15];
   categoriesList: any[] = []
+    selectedImage: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -70,7 +71,7 @@ term: any;
       buttons: ["Cancel", "Confirm"],
     }).then((result) => {
       if (result) {
-        const point = environment.apiUrl + "/roles"
+        const point = environment.apiUrl + "/magazins"
         this.backendService
           .delete(`${point}/${id}`)
           .subscribe(
@@ -89,6 +90,12 @@ term: any;
   handlePageSizeChange(event: any): void {
     this.pageSize = event.target.value;
     this.page = 1;
+  }
+
+    openImageModal(imagePath: string, content: any) {
+      // alert(imagePath)
+    this.selectedImage = imagePath;
+    this.modalService.open(content, { centered: true });
   }
   
 }

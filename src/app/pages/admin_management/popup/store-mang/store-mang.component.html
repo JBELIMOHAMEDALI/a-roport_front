@@ -46,18 +46,21 @@
             <span *ngIf="address.touched && address.errors?.required" class="text-danger">Address is
                 required</span>
         </div>
-        <!-- <div *ngIf="this.add" class="form-group col-md-12">
-            <label for="inputEmail4">Product Image</label>
+        <div *ngIf="this.add" class="form-group col-md-12">
+            <label for="inputEmail4">Store Image</label>
             <input type="file" class="form-control" (change)="onFileSelected($event)" id="image" name="image" ngModel
                 [(ngModel)]="this.model.image" #image="ngModel" required>
             <span *ngIf="image.touched && image.errors?.required" class="text-danger">Store Image is required</span>
         </div>
-        <div *ngIf="!this.add" class="form-group col-md-12">
-            <label for="inputEmail4">Store Image</label>
-            <input type="file" class="form-control" (change)="onFileSelected($event)" id="image" name="image" ngModel
-                [(ngModel)]="this.model.image" #imagePath="ngModel">
-            <span *ngIf="image.touched && image.errors?.required" class="text-danger">Store Image is required</span>
-        </div> -->
+<div *ngIf="!add" class="form-group col-md-12">
+  <label for="inputEmail4">Store Image</label>
+  <input type="file" class="form-control" (change)="onFileSelected($event)"
+         id="image" name="image" ngModel [(ngModel)]="model.image" #image="ngModel">
+</div>
+
+                <div class="form-group col-md-12">
+            <span class="text-danger">*To change the store image, just link a new one.</span>
+        </div>
         <div class="modal-footer">
             <button *ngIf="this.add==true" type="submit" [disabled]="f.invalid" class="btn btn-primary">Add</button>
             <button *ngIf="this.add==false" type="submit" [disabled]="f.invalid" class="btn btn-warning">Edit</button>

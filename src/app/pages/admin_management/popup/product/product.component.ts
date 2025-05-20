@@ -140,13 +140,17 @@ export class ProductComponent implements OnInit {
         payload.imagePath = null; // No image uploaded or present
       }
       payload.tva = payload.tva / 100;
+      payload.category = {id :payload.category};
+      payload.magazin = {id :payload.magazinId};
+      console.log(payload);
+      
       this.backendService
         .put(`${environment.apiUrl}/products/${this.obj.id}`, payload)
         .subscribe(
           new Observer(
             this.router,
             null,
-            true,
+            false,
             true,
             this.sharedService,
             this.activeModal
