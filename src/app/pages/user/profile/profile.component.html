@@ -18,8 +18,8 @@
             <div class="media-body row" style="color: black;">
               <div class="col-lg-12">
                 <div class="user-title">
-                  <h2 class="text-black">{{this.userInfo?.firstName+' '+this.userInfo?.lastName}}</h2>
-                  <span class="text-black">{{this.userInfo?.authorities[0].authority}}</span>
+                  <h2 class="text-black">{{this.userInfo.firstName+' '+this.userInfo.lastName}}</h2>
+                  <span class="text-black">{{this.userInfo.authorities[0].authority}}</span>
                 </div>
               </div>
               <div>
@@ -274,81 +274,51 @@
           </ng-template>
         </ngb-tab>
 
-        <!-- <ngb-tab title="Settings">
+        <ngb-tab title="Settings">
           <ng-template ngbTabContent>
-            <div [@fadeInOutTranslate] class="m-t-15">
+            <div class="container mt-5">
               <div class="card">
                 <div class="card-header text-center">
-                  <h5 class="card-header-text">Change Your Password</h5>
+                  <h5>Change Your Password</h5>
                 </div>
                 <div class="card-body">
-                  <div class="form-row">
-                    <div class="form-group col-12">
-                      <label for="currentPassword">Current Password</label>
-                      <input
-                        type="password"
-                        class="form-control"
-                        id="currentPassword"
-                        name="currentPassword"
-                        ngModel
-                        [(ngModel)]="this.model.currentPassword"
-                        #currentPassword="ngModel"
-                        placeholder="Enter Current Password"
-                        style="margin-left: 30%; margin-right: 30%;"
-                        required
+                  <form class="form" name="form" #f="ngForm" (ngSubmit)="changePassword(f)">
+                    <div class="form-group">
+                      <label for="currentPassword">Current Password</label> 
+                      <input type="password" class="form-control" id="currentPassword"  name="currentPassword" ngModel [(ngModel)]="this.model.currentPassword"  #currentPassword="ngModel" placeholder="Enter Current Password"  required
                       />
                       <span *ngIf="currentPassword.touched && currentPassword.errors?.required" class="text-danger">
                         Current Password is required
                       </span>
                     </div>
-                  </div>
-        
-                  <div class="form-row">
-                    <div class="form-group col-12">
+            
+                    <div class="form-group">
                       <label for="newPassword">New Password</label>
-                      <input
-                        type="password"
-                        class="form-control"
-                        id="newPassword"
-                        name="newPassword"
-                        ngModel
-                        [(ngModel)]="this.model.newPassword"
-                        #newPassword="ngModel"
-                        placeholder="Enter New Password"
-                        style="margin-left: 30%; margin-right: 30%;"
-                        required
-                      />
+                      <input type="password" class="form-control" id="newPassword"  name="newPassword" ngModel [(ngModel)]="this.model.newPassword"  #newPassword="ngModel" placeholder="Enter New Password"  required/>
                       <span *ngIf="newPassword.touched && newPassword.errors?.required" class="text-danger">
                         New Password is required
                       </span>
                     </div>
-                  </div>
-        
-                  <div class="form-row">
-                    <div class="form-group col-12">
+            
+                    <div class="form-group">
                       <label for="confirmPassword">Confirm New Password</label>
-                      <input
-                        type="password"
-                        class="form-control"
-                        id="confirmPassword"
-                        name="confirmPassword"
-                        ngModel
-                        [(ngModel)]="this.model.confirmPassword"
-                        #confirmPassword="ngModel"
-                        placeholder="Confirm New Password"
-                        style="margin-left: 30%; margin-right: 30%;"
-                        required
-                      />
-                      <span *ngIf="confirmPassword.touched && confirmPassword.errors?.required" class="text-danger">
-                        Confirm New Password is required
+                      <input type="password" class="form-control" id="confirmPassword"  name="confirmPassword" ngModel [(ngModel)]="this.model.confirmPassword"  #confirmPassword="ngModel" placeholder="Confirm New Password"  required/>
+                      <span
+                        *ngIf="model.newPassword !== model.confirmPassword && confirmPassword.touched"
+                        class="text-danger"
+                      >
+                        Passwords do not match
                       </span>
                     </div>
-                  </div>
+            
+                    <button type="submit" class="btn btn-primary btn-block">Change Password</button>
+                  </form>
                 </div>
               </div>
             </div>
+            
           </ng-template>
-        </ngb-tab> -->
+        </ngb-tab>
         
       </ngb-tabset>
     </div>

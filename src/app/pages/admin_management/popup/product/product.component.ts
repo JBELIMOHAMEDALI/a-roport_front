@@ -60,7 +60,7 @@ export class ProductComponent implements OnInit {
     this.model.name = this.obj.name;
     this.model.price = this.obj.price;
     this.model.description = this.obj.description;
-    this.model.tva = this.obj.tva * 100; // Convert to percentage for displaydescription
+    this.model.tva = this.obj.tva; // Convert to percentage for displaydescription
   }
   // Handle file selection
   onFileSelected(event: Event): void {
@@ -98,8 +98,7 @@ export class ProductComponent implements OnInit {
   // Handle form submission
   async Onsubmit(f: NgForm) {
     let payload = { ...f.value };
-    console.log(payload);
-    
+   
     // Ensure image upload before proceeding
     if (this.selectedFile) {
       await this.uploadImage(); // Wait for image upload to complete
@@ -113,7 +112,7 @@ export class ProductComponent implements OnInit {
     // Adjust other payload values
     payload.categoryId =  payload.category;
     payload.magazinId =  1;
-    payload.tva = payload.tva / 100;
+    payload.tva = payload.tva ;
 
     // Differentiate between adding and editing a product
     if (this.add) {
@@ -139,7 +138,7 @@ export class ProductComponent implements OnInit {
       } else {
         payload.imagePath = null; // No image uploaded or present
       }
-      payload.tva = payload.tva / 100;
+      payload.tva = payload.tva;
       payload.category = {id :payload.category};
       payload.magazin = {id :payload.magazinId};
       console.log(payload);

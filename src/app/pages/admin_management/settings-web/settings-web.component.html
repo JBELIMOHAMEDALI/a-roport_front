@@ -4,10 +4,10 @@
       <div class="row align-items-end">
         <div class="col-lg-8">
           <div class="page-header-title">
-            <span><i class="icofont icofont-cube bg-c-pink"></i></span>
+            <span><i class="icofont icofont-settings bg-c-pink"></i></span>
             <div class="d-inline">
-              <span class="d-block"><h4>Products management</h4></span>
-              <span>This page allows you to add, delete, and update Products in the system.</span>
+              <span class="d-block"><h4>Settings management</h4></span>
+              <span>This page allows you to add, delete, and update Settings in the system.</span>
             </div>
           </div>
         </div>
@@ -20,7 +20,7 @@
                 </a>
               </li>
               <li class="breadcrumb-item">
-                <a [routerLink]="'/dashboard/product_management'">Products Management
+                <a [routerLink]="'/dashboard/settings'">Settings Management
                  
                 </a>
                 
@@ -31,81 +31,78 @@
       </div>
     </div>
   </div>
+  <!-- Page-header end -->
+  
   <div class="row">
     <div class="col-sm-12">
-      <app-card [title]="'Products list'">
+      <app-card [title]="'Settings list'">
 
         <label for="srch">Research</label>&nbsp;&nbsp;&nbsp;&nbsp;
         <input id="serch" type="text" [(ngModel)]="term">
         <div style="float: right;margin-right: 20px;">
           <button type="button" class="btn btn-primary btn-sm" (click)="openAdd()" style="background-color: #5256ad; border-color: #5256ad;">
-            New Products
+            New Settings
         </button>
             <!-- <button type="button"  class="btn btn-outline-info">Ajouter patient</button> -->
             <br />
             <br />
+          
         </div>
         <div class="table-responsive">
         <table class="table table-bordered align-middle text-center" style="border: 1px solid black;">
             <thead style="background-color: #5256ad; border: 1px;color: rgb(255, 255, 255);">
               <tr>
-                <th scope="col">N°  </th>
-                <th scope="col">Picture</th>
-                <th scope="col">Name</th>
-                <th scope="col">Price</th>
-                <th scope="col">TVA</th>
-                <th scope="col">Price + TVA</th>
-                <th scope="col">Category</th>
-                <th scope="col">Action</th>
+<th scope="col">No.</th>
+<th scope="col">Label</th>
+<th scope="col">Values</th>
+<th scope="col">created At</th>
+<th scope="col">Actions</th>
+
               </tr>
             </thead>
-
-            <tbody *ngIf="productsList.length == 0">
+            <tbody *ngIf="settingsList.length == 0">
               <tr>
-                <td colspan="8"> 
+                <td colspan="4"> 
                     No Data Found
                 </td>
               </tr>
           </tbody>
 
-            <tbody *ngFor="let item of this.productsList | filter:term | slice: (page - 1) * pageSize: page * pageSize; let i = index">
-              <tr >
-                  <td class="align-middle">{{item.id}}</td>
-                  <td class="align-middle">
-                    <img [src]="item.imagePath" alt="{{item.name}}" class="img-thumbnail" style="width: 50px; height: 50px;" (click)="openImageModal(item.imagePath, imageModal)">
-                  </td>
-                  <td class="align-middle" >{{item.name}}</td>
-                  <td class="align-middle" style="background-color: antiquewhite;">{{item.price+' DT'}}</td>
-                  <td class="align-middle" style="background-color: beige;">{{item.tva+' %'}}</td>
-                  <td class="align-middle" style="background-color: aquamarine;">{{ (item.price * (1 + item.tva / 100)) | number:'1.2-2' }} DT</td>
-                  <td class="align-middle">{{item.category.name}}</td>
-                  <td class="align-middle">
+
+
+            <tbody *ngFor="let item of this.settingsList | filter:term | slice: (page - 1) * pageSize: page * pageSize; let i = index">
+              <tr>
+                  <td>{{item.id}}</td>
+                  <td>{{item.label}}</td>
+                  <td>{{item.value}}</td>
+                  <td>{{ item.createdAt | date:'short' }}</td> <!-- Example: "5/12/2025, 12:00 PM" -->
+
+                  <td>
                     <!-- update -->
-                    <svg xmlns="http://www.w3.org/2000/svg" (click)="openUpdate(item)" width="20" height="20" fill="currentColor" class="bi bi-pencil-square text-warning" viewBox="0 0 16 16">
+                    <svg xmlns="http://www.w3.org/2000/svg" (click)="openUpdate(item)" width="16" height="16" fill="currentColor" class="bi bi-pencil-square text-warning" viewBox="0 0 16 16">
                         <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                         <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
                     </svg>
                     
                     &nbsp;&nbsp;&nbsp;&nbsp;
   <!-- detailes -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" (click)="openInfo(item)" class="bi bi-eye text-primary" viewBox="0 0 16 16">
+                    <!-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye text-primary" viewBox="0 0 16 16">
                         <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
                         <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"/>
-                    </svg>
+                    </svg> -->
                     
                     &nbsp;&nbsp;&nbsp;&nbsp;
   <!-- delete -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" (click)="openDelete(item.id)" height="20" fill="currentColor" class="bi bi-trash3 text-danger" viewBox="0 0 16 16">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" (click)="openDelete(item.id)" height="16" fill="currentColor" class="bi bi-trash3 text-danger" viewBox="0 0 16 16">
                         <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
                     </svg>
                   </td>
               </tr>
             </tbody>
-
-            
           </table>
+  
           <div class="d-flex justify-content-between p-2">
-            <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="productsList.length">
+            <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="settingsList.length">
             </ngb-pagination>
             <!-- Items per page -->
             <div>
@@ -121,13 +118,4 @@
       </app-card>
     </div>
   </div>
-  <ng-template #imageModal let-modal>
-  <div class="modal-header">
-    <!-- <h5 class="modal-title" id="imageModalLabel">Image Preview</h5>
-    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button> -->
-  </div>
-  <div class="modal-body text-center">
-    <img *ngIf="this.selectedImage !=''" [src]="selectedImage" class="img-fluid" alt="Large Image">
-        <h4 *ngIf="this.selectedImage ==''" >Image not Found</h4>
-  </div>
-</ng-template>
+  

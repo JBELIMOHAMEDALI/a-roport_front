@@ -29,7 +29,7 @@ import { CloudinaryService } from '../../../service/cloudinary.service';
   ]
 })
 export class ProfileComponent implements OnInit {
-  editProfile = true;
+ editProfile = true;
   editProfileIcon = 'icofont-edit';
   userInfo: any = {}
   doIt =false ;
@@ -40,7 +40,7 @@ export class ProfileComponent implements OnInit {
   imageUrl: string | null = null; // To store the uploaded image URL
   uploadProgress: number | null = null; // To track upload progress
   public basicContent: string;
-
+  model:any={}
   selectedFile = null;
   public rowsOnPage = 10;
   public filterQuery = '';
@@ -80,7 +80,7 @@ export class ProfileComponent implements OnInit {
     this.backendService.get(`${environment.apiUrl + '/admin/users/'}${this.tokenService.getDecodedUser().userId}`).subscribe(
       new Observer().OBSERVER_GET((response) => {
         this.userInfo = response.rows;
-        // console.log( );
+        console.log( this.userInfo);
 
       })
     );
@@ -173,5 +173,19 @@ this.doIt =false ;
 
 
   }
-
+  changePassword(f:NgForm){
+    const payload={currentPassword:f.value.currentPassword,newPassword:f.value.newPassword,userId:this.tokenService.getDecodedUser().userId};
+    console.log(payload);
+        this.backendService
+            .post(`${environment.apiUrl}/auth/update-password`, payload)
+            .subscribe(new Observer(
+              this.router,// just un class dans angular
+                 null,//target : lin eli machilou
+                 true,//relode
+                 true,//swwet alert
+                 this.sharedService,//obligtoir si ana reload
+                 this.activeModal
+              ).OBSERVER_POST());
+    
+  }
 }

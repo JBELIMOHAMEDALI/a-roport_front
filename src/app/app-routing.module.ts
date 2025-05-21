@@ -27,6 +27,7 @@ import { ProductListComponent } from "./pages/home_page/product-list/product-lis
 import { UserRoleListComponent } from "./pages/admin_management/user-role-list/user-role-list.component";
 import { StoreManagementComponent } from "./pages/admin_management/store-management/store-management.component";
 import { ShopListComponent } from "./pages/home_page/shop-list/shop-list.component";
+import { SettingsWebComponent } from "./pages/admin_management/settings-web/settings-web.component";
 
 const routes: Routes = [
   { 
@@ -113,6 +114,10 @@ const routes: Routes = [
       },
       {
         path: "avisAdminDetailse/:id", component: DetailseAvisAdminComponent,
+        // data: { role: ["ADMIN"] },
+      },
+            {
+        path: "settings", component: SettingsWebComponent,
         // data: { role: ["ADMIN"] },
       },
     ],

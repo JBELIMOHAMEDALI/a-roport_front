@@ -55,6 +55,8 @@ import { UserRoleListComponent } from './pages/admin_management/user-role-list/u
 import { UserRoleComponent } from './pages/admin_management/popup/user-role/user-role.component';
 import { StoreManagementComponent } from './pages/admin_management/store-management/store-management.component';
 import { StoreMangComponent } from './pages/admin_management/popup/store-mang/store-mang.component';
+import { SettingsWebComponent } from './pages/admin_management/settings-web/settings-web.component';
+import { SettingsWebMangComponent } from './pages/admin_management/popup/settings-web-mang/settings-web-mang.component';
 
 
 @NgModule({
@@ -101,6 +103,8 @@ import { StoreMangComponent } from './pages/admin_management/popup/store-mang/st
     UserRoleComponent,
     StoreManagementComponent,
     StoreMangComponent,
+    SettingsWebComponent,
+    SettingsWebMangComponent,
   ],
   imports: [
     BrowserModule,
@@ -129,7 +133,7 @@ import { StoreMangComponent } from './pages/admin_management/popup/store-mang/st
     InfoUserComponent,
     ChangeStatusOrsdresComponent,
     AddCommanterComponent,
-    UserRoleComponent,StoreMangComponent
+    UserRoleComponent,StoreMangComponent,SettingsWebMangComponent
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [
