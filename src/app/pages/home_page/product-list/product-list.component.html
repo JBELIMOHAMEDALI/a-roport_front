@@ -1,191 +1,124 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="../../../../assets/firest_home/assets/css/fontawesome.css">
-    <link rel="stylesheet" href="../../../../assets/firest_home/assets/css/templatemo-sixteen.css">
-    <link rel="stylesheet" href="../../../../assets/firest_home/assets/css/owl.css">
-<!------ Include the above in your HEAD tag ---------->
-<style>
-  .right-image img {
-    width: 100%;
-    max-width: 500px;   /* largeur max de l'image */
-    height: 250px;       /* hauteur fixe pour harmoniser toutes les images */
-    object-fit: cover;   /* rogne l’image pour remplir sans déformer */
-    border-radius: 5px;  /* coins arrondis */
-    display: block;
-    background-color: #f8f9fa; /* couleur de fond discrète si l’image est transparente */
-  }
-</style>
+<!DOCTYPE html>
+<html lang="en">
 
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+<head>
+  <meta charset="UTF-8" />
+  <title>Store</title>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <div class="best-features about-features">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="section-heading">
-              <h2>{{this.magazins.name}}</h2>
-            </div>
+  <link rel="stylesheet" href="../../../../assets/firest_home/assets/css/fontawesome.css">
+  <link rel="stylesheet" href="../../../../assets/firest_home/assets/css/templatemo-sixteen.css">
+  <link rel="stylesheet" href="../../../../assets/firest_home/assets/css/owl.css">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap"
+    rel="stylesheet">
+
+  <style>
+    .right-image img {
+      width: 100%;
+      max-width: 500px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 5px;
+      display: block;
+      background-color: #f8f9fa;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Magasin Info Section -->
+  <div class="best-features about-features">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="section-heading">
+            <h2>{{this.magazins.name}}</h2>
           </div>
-          <div class="col-md-6">
-            <div class="right-image">
-              <img [src]="this.magazins.image" alt="">
-            </div>
+        </div>
+        <div class="col-md-6">
+          <div class="right-image">
+            <img [src]="this.magazins.image" alt="">
           </div>
-          <div class="col-md-6">
-            <div class="left-content">
-              <br><br>
-              <h4>Who we are &amp; What we do?</h4>
-              <p>{{this.magazins.description}}</p>
-
-            </div>
+        </div>
+        <div class="col-md-6">
+          <div class="left-content">
+            <br><br>
+            <h4>Who we are &amp; What we do?</h4>
+            <p>{{this.magazins.description}}</p>
           </div>
         </div>
       </div>
     </div>
+  </div>
+  <br>
+  <hr>
+  <br>
+  <!-- Search and Filter Section -->
+  <div class="container mb-4">
+    <div class="row align-items-end">
+      <!-- Search Input -->
+      <div class="col-md-6 mb-3">
+        <label for="searchInput"><strong>Search Products</strong></label>
+        <input type="text" id="searchInput" class="form-control" [(ngModel)]="term" placeholder="Type to search...">
+      </div>
 
-    
-    <div class="team-members">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="section-heading">
-              <h2>Our Products</h2>
-            </div>
+      <!-- Category Dropdown -->
+      <div class="col-md-6 mb-3">
+        <label for="categoryFilter"><strong>Filter by Category</strong></label>
+        <select id="categoryFilter" class="form-control" (change)="onChange($event.target.value)">
+          <option value="-1">All Categories</option>
+          <ng-container *ngFor="let item of this.catogry">
+            <option value="{{item.id}}">{{item.name}}</option>
+          </ng-container>
+
+          <!-- You can dynamically generate these options from Angular if needed -->
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Products Section -->
+  <div class="team-members">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="section-heading">
+            <h2>Our Products</h2>
           </div>
-          <div class="col-md-4">
-            <div class="team-member">
-              <div class="thumb-container">
-                <img src="../../../../assets/images/avatar-2.jpg" alt="">
-                <div class="hover-effect">
-                  <div class="hover-content">
-                    <ul class="social-icons">
-                      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                      <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                      <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                    </ul>
-                  </div>
+        </div>
+        <div class="col-md-4"
+          *ngFor="let item of this.product | filter:term | slice: (page - 1) * pageSize: page * pageSize; let i = index">
+          <div class="team-member">
+            <div class="thumb-container">
+              <img [src]="item.imagePath" alt="{{item.name}}">
+              <div class="hover-effect">
+                <div class="hover-content">
+
                 </div>
               </div>
-              <div class="down-content">
-                <h4>Johnny William</h4>
-                <span>CO-Founder</span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing itaque corporis nulla.</p>
-              </div>
             </div>
-          </div>
-          <div class="col-md-4">
-            <div class="team-member">
-              <div class="thumb-container">
-                <img src="assets/images/team_02.jpg" alt="">
-                <div class="hover-effect">
-                  <div class="hover-content">
-                    <ul class="social-icons">
-                      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                      <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                      <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="down-content">
-                <h4>Karry Pitcher</h4>
-                <span>Product Expert</span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing itaque corporis nulla.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="team-member">
-              <div class="thumb-container">
-                <img src="assets/images/team_03.jpg" alt="">
-                <div class="hover-effect">
-                  <div class="hover-content">
-                    <ul class="social-icons">
-                      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                      <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                      <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="down-content">
-                <h4>Michael Soft</h4>
-                <span>Chief Marketing</span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing itaque corporis nulla.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="team-member">
-              <div class="thumb-container">
-                <img src="assets/images/team_04.jpg" alt="">
-                <div class="hover-effect">
-                  <div class="hover-content">
-                    <ul class="social-icons">
-                      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                      <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                      <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="down-content">
-                <h4>Mary Cool</h4>
-                <span>Product Specialist</span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing itaque corporis nulla.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="team-member">
-              <div class="thumb-container">
-                <img src="assets/images/team_05.jpg" alt="">
-                <div class="hover-effect">
-                  <div class="hover-content">
-                    <ul class="social-icons">
-                      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                      <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                      <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="down-content">
-                <h4>George Walker</h4>
-                <span>Product Photographer</span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing itaque corporis nulla.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="team-member">
-              <div class="thumb-container">
-                <img src="assets/images/team_06.jpg" alt="">
-                <div class="hover-effect">
-                  <div class="hover-content">
-                    <ul class="social-icons">
-                      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                      <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                      <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="down-content">
-                <h4>Kate Town</h4>
-                <span>General Manager</span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing itaque corporis nulla.</p>
-              </div>
+            <div class="down-content">
+              <h4>{{item.name}}</h4>
+              <span>{{item.price}} DT</span>
+              <p>{{ item.description.split(' ').slice(0, 8).join(' ') }}...</p>
+              <br>
+              <button [routerLink]="['/product', item.id]" class="btn btn-info"><i
+                  class="icofont icofont-eye-alt"></i>Details</button> &nbsp; <button
+                (click)="this.check_if_connected()" class="btn btn-primary"><i class="icofont icofont-cart"></i>Add to
+                Cart</button>
             </div>
           </div>
         </div>
+        <!-- Repeat for more products -->
       </div>
     </div>
-<hr>
+  </div>
+
+  <hr>
+
+</body>
+
+</html>

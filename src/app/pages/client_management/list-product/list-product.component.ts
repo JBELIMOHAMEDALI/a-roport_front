@@ -23,6 +23,9 @@ export class ListProductComponent implements OnInit {
   pageSizes = [5, 10, 15];
   proudactList: any[] = []
   categoriesList: any[] = []
+  catogry: any[] = []
+  store: any[] = []
+categoryFilterDisabled: boolean = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -38,6 +41,8 @@ export class ListProductComponent implements OnInit {
   ngOnInit() {
     this.getListProduct()
     this.getListCatgory()
+    this.getListStore()
+
 
   }
   getListProduct() {
@@ -71,14 +76,40 @@ export class ListProductComponent implements OnInit {
       new Observer().OBSERVER_GET((response) => {
         console.log(response);
 
-        this.categoriesList = response.rows;
+        this.catogry = response.rows;
       })
     );
   }
 
+
+
   openDetails(item) {
     this.router.navigate(["/dashboard/detaile_one_product", item])
   }
+// onChange(id){
+//   if (id == "-1"){
+//   this.getListProduct()
+// }else{
+//   // this.getListProductByMagAndCat(event)
+// }
+// }
+    getListStore() {
+    // const docId = "InnPv3DULUxZZvwYCgym";
+    this.backendService.get(`${environment.apiUrl + '/magazins'}`).subscribe(
+      new Observer().OBSERVER_GET((response) => {
+        this.store = response.rows;
+      })
+    );
+  }
+
+onChangeStore(storeId: string) {
+  if (storeId !== "-1") {
+    this.categoryFilterDisabled = false;
+  } else {
+    this.categoryFilterDisabled = true;
+  }
+}
+
 
 
 }

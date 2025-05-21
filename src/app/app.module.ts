@@ -57,6 +57,7 @@ import { StoreManagementComponent } from './pages/admin_management/store-managem
 import { StoreMangComponent } from './pages/admin_management/popup/store-mang/store-mang.component';
 import { SettingsWebComponent } from './pages/admin_management/settings-web/settings-web.component';
 import { SettingsWebMangComponent } from './pages/admin_management/popup/settings-web-mang/settings-web-mang.component';
+import { CheckIfConnectedComponent } from './pages/admin_management/popup/check-if-connected/check-if-connected.component';
 
 
 @NgModule({
@@ -105,6 +106,7 @@ import { SettingsWebMangComponent } from './pages/admin_management/popup/setting
     StoreMangComponent,
     SettingsWebComponent,
     SettingsWebMangComponent,
+    CheckIfConnectedComponent,
   ],
   imports: [
     BrowserModule,
