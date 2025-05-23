@@ -1,0 +1,33 @@
+<br>
+<br>
+<br>
+<div class="mainDiv">
+  <div class="cardStyle">
+    <form class="form" name="form" #f="ngForm" (ngSubmit)="this.Onsubmit(f)">
+
+      <img src="" id="signupLogo" />
+
+      <h2 class="formTitle">
+        Activate your account
+      </h2>
+      <br>
+      <div class="inputDiv">
+        <p>We've sent a code to your email. Please check it and enter it here to validate your account and start using
+          our awesome app! If you don’t receive it, please check your spam folder or request a resend of the code.</p>
+      </div>
+      <div class="inputDiv">
+        <label class="inputLabel" for="otp">Code :</label>
+        <input type="text" id="otp" name="otp" ngModel #otp="ngModel" required pattern="^[0-9]{6}$" maxlength="6">
+        <span *ngIf="otp.touched && otp.errors?.required" class="text-danger">Code is required</span>
+        <span *ngIf="otp.touched && otp.errors?.pattern" class="text-danger">The code must be 6 digits long</span>
+      </div>
+      <div class="buttonWrapper">
+        <button type="submit" [disabled]="f.invalid" id="submitButton"
+          class="submitButton pure-button pure-button-primary">
+          <span>Continue</span>
+          <!-- <span id="loader"></span> -->
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

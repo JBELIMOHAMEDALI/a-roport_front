@@ -29,6 +29,7 @@ import { StoreManagementComponent } from "./pages/admin_management/store-managem
 import { ShopListComponent } from "./pages/home_page/shop-list/shop-list.component";
 import { SettingsWebComponent } from "./pages/admin_management/settings-web/settings-web.component";
 import { ProductDetailesListComponent } from "./pages/home_page/product-detailes-list/product-detailes-list.component";
+import { CardPaymentComponent } from "./pages/card-payment/card-payment.component";
 
 const routes: Routes = [
   { 
@@ -64,6 +65,10 @@ const routes: Routes = [
 
       {
         path: "user_account_management", component: UserAccountManagementComponent,
+        // data: { role: ["ADMIN"] },
+      },
+            {
+        path: "card_payment/:id", component: CardPaymentComponent,
         // data: { role: ["ADMIN"] },
       },
             {

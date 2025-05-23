@@ -10,29 +10,22 @@
       <!-- Category Dropdown -->
       <div class="col-md-4 mb-3">
         <label for="categoryFilter"><strong>Filter by Store</strong></label>
-        <select id="storeFilter"
-        class="form-control"
-        (change)="onChangeStore($event.target.value)">
-  <option value="-1">All Stores</option>
-  <ng-container *ngFor="let item of this.store">
-    <option [value]="item.id">{{ item.name }}</option>
-  </ng-container>
-</select>
-
-
+        <select id="storeFilter" class="form-control" (change)="onChangeStore($event.target.value)">
+          <option value="-1">All Stores</option>
+          <ng-container *ngFor="let item of this.store">
+            <option [value]="item.id">{{ item.name }}</option>
+          </ng-container>
+        </select>
       </div>
-
       <div class="col-md-4 mb-3">
         <label for="categoryFilter"><strong>Filter by Category</strong></label>
-        <select id="categoryFilter"
-        class="form-control"
-        [disabled]="categoryFilterDisabled"
-        (change)="onChange($event.target.value)">
-  <option value="-1">All Categories</option>
-  <ng-container *ngFor="let item of this.catogry">
-    <option [value]="item.id">{{ item.name }}</option>
-  </ng-container>
-</select>
+        <select id="categoryFilter" class="form-control" [disabled]="categoryFilterDisabled"
+          (change)="onChange($event.target.value)">
+          <option value="-1">All Categories</option>
+          <ng-container *ngFor="let item of this.catogry">
+            <option [value]="item.id">{{ item.name }}</option>
+          </ng-container>
+        </select>
 
 
       </div>

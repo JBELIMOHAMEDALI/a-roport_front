@@ -25,6 +25,7 @@ export class ListProductComponent implements OnInit {
   categoriesList: any[] = []
   catogry: any[] = []
   store: any[] = []
+  storeIdSelected:any
 categoryFilterDisabled: boolean = true;
 
   constructor(
@@ -102,12 +103,50 @@ categoryFilterDisabled: boolean = true;
     );
   }
 
+getListProductByStoreAndCategory(store: string, category?: string): void {
+  let URL =""
+  if (category) {
+    URL =`${environment.apiUrl + '/products/filter?magazinId='}` + store+'&categoryId='+category ;
+    // Call API or filter with category
+  } else {
+    URL = `${environment.apiUrl + '/products/filter?magazinId='}` + store
+    // Call API or filter without category
+  }
+
+
+   this.backendService.get(URL).subscribe(
+        new Observer().OBSERVER_GET((response) => {
+          this.proudactList = response.rows;
+        })
+      );
+}
+
+
 onChangeStore(storeId: string) {
   if (storeId !== "-1") {
+   
     this.categoryFilterDisabled = false;
+    this.storeIdSelected = storeId
+    this.getListProductByStoreAndCategory(storeId)
+    
   } else {
+    this.getListProduct()
     this.categoryFilterDisabled = true;
+
   }
+}
+
+onChange(category){
+  if (category !== "-1") {
+   
+    this.getListProductByStoreAndCategory(this.storeIdSelected,category)
+    
+  } else {
+    this.getListProduct()
+    this.categoryFilterDisabled = true;
+
+  }
+
 }
 
 

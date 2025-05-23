@@ -9,6 +9,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import swal from 'sweetalert';
 import { CategoriesComponent } from '../popup/categories/categories.component';
 import { OrdersComponent } from '../popup/orders/orders.component';
+import { TokenStorageService } from '../../../service/token-storage.service';
 
 @Component({
   selector: 'app-commande-managment',
@@ -31,6 +32,7 @@ export class CommandeManagmentComponent implements OnInit {
     private modalService: NgbModal,
     private backendService: BackendService,
     public sharedService: SharedService,
+     private tokenService: TokenStorageService,
   ) { }
 
   ngOnInit() {
@@ -38,6 +40,7 @@ export class CommandeManagmentComponent implements OnInit {
 
   }
   getListOrders() {
+    const storeID =this.tokenService.getDecodedUser().userId;
     // const docId = "InnPv3DULUxZZvwYCgym";
     this.backendService.get(`${environment.apiUrl + '/orders'}`).subscribe(
       new Observer().OBSERVER_GET((response) => {

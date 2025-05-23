@@ -58,6 +58,8 @@ import { StoreMangComponent } from './pages/admin_management/popup/store-mang/st
 import { SettingsWebComponent } from './pages/admin_management/settings-web/settings-web.component';
 import { SettingsWebMangComponent } from './pages/admin_management/popup/settings-web-mang/settings-web-mang.component';
 import { CheckIfConnectedComponent } from './pages/admin_management/popup/check-if-connected/check-if-connected.component';
+import { CardPaymentComponent } from './pages/card-payment/card-payment.component';
+import { CardPaymentValdationComponent } from './pages/card-payment-valdation/card-payment-valdation.component';
 
 
 @NgModule({
@@ -107,6 +109,8 @@ import { CheckIfConnectedComponent } from './pages/admin_management/popup/check-
     SettingsWebComponent,
     SettingsWebMangComponent,
     CheckIfConnectedComponent,
+    CardPaymentComponent,
+    CardPaymentValdationComponent,
   ],
   imports: [
     BrowserModule,
