@@ -47,10 +47,10 @@ export class OrdersComponent implements OnInit {
     }
   }
 
-  openAffected(id: number) {
+  openAffected(id: number,stat) {
     // Open the modal for OrdersAffectesLivreurComponent
  this.backendService
-        .put(`${environment.apiUrl}/orders/1/5`,null)
+        .put(`${environment.apiUrl}/orders/${id}/${stat}`,null)
         .subscribe(new Observer(
           this.router,// just un class dans angular
              null,//target : lin eli machilou

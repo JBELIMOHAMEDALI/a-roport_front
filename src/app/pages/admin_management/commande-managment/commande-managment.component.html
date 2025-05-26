@@ -83,11 +83,13 @@
                 <td style="background-color: aquamarine;">{{item.deliveryFee || 0 +' DT'}}</td> -->
 
                 <td>
-                    <span *ngIf="item.status === 1" class="badge badge-primary">Pending </span>
-                    <span *ngIf="item.status === 2" class="badge badge-warning">In progress</span>
-                    <span *ngIf="item.status === 3" class="badge badge-success">Confirmed</span>
-                    <span *ngIf="item.status === 4" class="badge badge-success">Ready to taken</span>
-                    <span *ngIf="item.status === 5" class="badge badge-dark">Taken</span>
+
+                                        <span *ngIf="item.status === 1" class="badge badge-primary">Pending</span>
+<span *ngIf="item.status === 2" class="badge badge-warning">In progress</span>
+<span *ngIf="item.status === 3" class="badge badge-success">Confirmed</span>
+<span *ngIf="item.status === 4" class="badge badge-danger">Cancelled</span>
+<span *ngIf="item.status === 5" class="badge badge-info">Ready to taken</span>
+<span *ngIf="item.status === 6" class="badge badge-dark">Taken</span>
                 </td>
                   <td>
                 
