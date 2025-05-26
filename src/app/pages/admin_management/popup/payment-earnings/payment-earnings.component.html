@@ -1,0 +1,28 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{title}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span><!-- l'icone X (croix) -->
+    </button>
+</div>
+<div class="modal-body">
+    <form class="form" name="form" #f="ngForm" (ngSubmit)="this.Onsubmit(f)">
+
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label for="inputEmail4">Amount</label>
+                <input type="number" class="form-control" id="amount" name="amount" ngModel [(ngModel)]="this.model.amount"
+                    #amount="ngModel" placeholder="Amount" required>
+                <span *ngIf="amount.touched && amount.errors?.required" class="text-danger">Amount is
+                    required</span>
+            </div>
+        </div>
+
+
+        <div class="modal-footer">
+            <button *ngIf="this.add==true" type="submit" [disabled]="f.invalid" class="btn btn-primary">Add</button>
+            <button *ngIf="this.add==false" type="submit" [disabled]="f.invalid" class="btn btn-warning">Edit</button>
+            <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+        </div>
+    </form>
+
+</div>

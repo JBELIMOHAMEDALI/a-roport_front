@@ -60,6 +60,8 @@ import { SettingsWebMangComponent } from './pages/admin_management/popup/setting
 import { CheckIfConnectedComponent } from './pages/admin_management/popup/check-if-connected/check-if-connected.component';
 import { CardPaymentComponent } from './pages/card-payment/card-payment.component';
 import { CardPaymentValdationComponent } from './pages/card-payment-valdation/card-payment-valdation.component';
+import { EarningsListComponent } from './pages/admin_management/earnings-list/earnings-list.component';
+import { PaymentEarningsComponent } from './pages/admin_management/popup/payment-earnings/payment-earnings.component';
 
 
 @NgModule({
@@ -111,6 +113,8 @@ import { CardPaymentValdationComponent } from './pages/card-payment-valdation/ca
     CheckIfConnectedComponent,
     CardPaymentComponent,
     CardPaymentValdationComponent,
+    EarningsListComponent,
+    PaymentEarningsComponent,
   ],
   imports: [
     BrowserModule,
@@ -139,7 +143,7 @@ import { CardPaymentValdationComponent } from './pages/card-payment-valdation/ca
     InfoUserComponent,
     ChangeStatusOrsdresComponent,
     AddCommanterComponent,
-    UserRoleComponent,StoreMangComponent,SettingsWebMangComponent
+    UserRoleComponent,StoreMangComponent,SettingsWebMangComponent,PaymentEarningsComponent
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [

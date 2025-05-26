@@ -30,6 +30,7 @@ import { ShopListComponent } from "./pages/home_page/shop-list/shop-list.compone
 import { SettingsWebComponent } from "./pages/admin_management/settings-web/settings-web.component";
 import { ProductDetailesListComponent } from "./pages/home_page/product-detailes-list/product-detailes-list.component";
 import { CardPaymentComponent } from "./pages/card-payment/card-payment.component";
+import { EarningsListComponent } from "./pages/admin_management/earnings-list/earnings-list.component";
 
 const routes: Routes = [
   { 
@@ -125,6 +126,10 @@ const routes: Routes = [
       },
             {
         path: "settings", component: SettingsWebComponent,
+        // data: { role: ["ADMIN"] },
+      },
+                  {
+        path: "earnings", component: EarningsListComponent,
         // data: { role: ["ADMIN"] },
       },
     ],
