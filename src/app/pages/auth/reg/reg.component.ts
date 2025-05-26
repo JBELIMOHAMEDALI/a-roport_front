@@ -34,7 +34,7 @@ export class RegComponent implements OnInit {
       phone: payload.phone,
       address: payload.address,
       imagePath: "http://res.cloudinary.com/dzdsxiaeb/image/upload/v1729758946/gntphciuyt0vornequgf.jpg",
-      role: "USER",
+      role: "CLIENT",
       status:1
     };
     this.backendService
