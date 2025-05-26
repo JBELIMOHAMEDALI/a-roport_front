@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { NgForm, NgModel } from "@angular/forms";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { NgModule } from '@angular/core';
 import { BackendService } from "../../service/backend.service";
 import Observer from "../../service/observer";
@@ -15,7 +15,7 @@ import { SharedService } from '../../service/shared.service';
   styleUrls: ['./card-payment-valdation.component.scss']
 })
 export class CardPaymentValdationComponent implements OnInit {
-
+id:any
   constructor(
 
     private backendService: BackendService,
@@ -23,27 +23,27 @@ export class CardPaymentValdationComponent implements OnInit {
     private tokenService: TokenStorageService,
     public activeModal: NgbActiveModal,
     public sharedService: SharedService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
+     this.route.paramMap.subscribe(params => {
+      this.id = params.get('id');
+    });
   }
   async Onsubmit(f: NgForm) {
     const { otp } = f.value;
     const id = this.tokenService.getDecodedUser().userId;
     this.backendService
-      .post(`${environment.apiUrl}/admin/verify-otp?userId=${id}&otp=${otp}`, null)
+      .post(`${environment.apiUrl}/orders/${this.id}/payment/verify-otp?userId=${id}&otp=${otp}`, null)
       .subscribe(new Observer(
         this.router,// just un class dans angular
-        "/dashboard",//target : lin eli machilou
+        "/dashboard/my_commande",//target : lin eli machilou
         false,//relode
         false,//swwet alert
         this.sharedService,//obligtoir si ana reload
         this.activeModal
-      ).OBSERVER_POST((response,success:boolean)=>{
-        if(success){
-          // localStorage.
-          this.tokenService.saveToken(response.rows)
-        }
-      }));
+      ).OBSERVER_POST(
+      ));
   }
 }

@@ -61,6 +61,7 @@ export class CardPaymentComponent implements OnInit {
 
   }
   sendOtp(id_order, id_user) {
+    alert("ok")
     this.backendService
       .post(`${environment.apiUrl}/orders/${id_order}/payment/send-otp?userId=${id_user}`, null)
       .subscribe(new Observer(
@@ -75,7 +76,7 @@ export class CardPaymentComponent implements OnInit {
   submitData() {
     swal({
       title: "Are you sure?",
-      text: "Are you sure you want to confirm the payment?",
+      text: "Are you sure you want to confirm the payment? We will send a verification code to your email for the payment processing. Please validate it to complete the process",
       icon: "info",
       closeOnEsc: true,
       closeOnClickOutside: true,
@@ -84,19 +85,8 @@ export class CardPaymentComponent implements OnInit {
       if (result) {
         // Get all items from the cart
         this.sendOtp(this.id, this.tokenService.getDecodedUser().userId)
-        swal({
-          title: "Are you sure?",
-          text: "We will send a verification code to your email for the payment processing. Please validate it to complete the process.",
-          icon: "info",
-          closeOnEsc: true,
-          closeOnClickOutside: true,
-          buttons: ["Cancel", "Confirm"],
-        }).then((result) => {
-          if (result) {
-           this.router.navigate(['/'])
+        this.router.navigate(['/dashboard/valdate_payment', this.id]);
 
-          }
-        });
       }
     });
   }

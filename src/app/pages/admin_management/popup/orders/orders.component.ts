@@ -1,7 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { OrdersAffectesLivreurComponent } from '../orders-affectes-livreur/orders-affectes-livreur.component';
+import { BackendService } from '../../../../service/backend.service';
+import { SharedService } from '../../../../service/shared.service';
+import { environment } from '../../../../../environments/environment';
+import { NgForm } from '@angular/forms';
+import Observer from '../../../../service/observer';
 
 @Component({
   selector: 'app-orders',
@@ -17,12 +21,15 @@ export class OrdersComponent implements OnInit {
 
   constructor(
     public activeModal: NgbActiveModal,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    public sharedService: SharedService,
+
+        private backendService: BackendService,
+        public router: Router
   ) { }
 
   ngOnInit() {
-    console.log(typeof(this.obj)
-    );
+
     
     // Check if obj and obj.orderLines exist
     if (this.obj && this.obj.orderLines) {
@@ -42,11 +49,17 @@ export class OrdersComponent implements OnInit {
 
   openAffected(id: number) {
     // Open the modal for OrdersAffectesLivreurComponent
-    this.activeModal.close();
-    const modalRef = this.modalService.open(OrdersAffectesLivreurComponent);
-    modalRef.componentInstance.add = false;
-    modalRef.componentInstance.title = "Orders management";
-    modalRef.componentInstance.id = id;
+ this.backendService
+        .put(`${environment.apiUrl}/orders/1/5`,null)
+        .subscribe(new Observer(
+          this.router,// just un class dans angular
+             null,//target : lin eli machilou
+             true,//relode
+             true,//swwet alert
+             this.sharedService,//obligtoir si ana reload
+             this.activeModal
+          ).OBSERVER_POST());
 
     }
-}
+
+    }
