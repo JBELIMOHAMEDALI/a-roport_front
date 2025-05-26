@@ -109,7 +109,7 @@
                     <div class="row lower">
                         <!-- <div class="col text-left"><a href="#"><u>Add promo code</u></a></div> -->
                     </div>
-                    <button [disabled]="f.invalid" class="btn">Place order</button>
+                    <button type="submit" [disabled]="f.invalid" (click)="submitData()" class="btn">Place order</button>
                     <p class="text-muted text-center">Complimentary Shipping & Returns</p>
                 </div>
             </div>
