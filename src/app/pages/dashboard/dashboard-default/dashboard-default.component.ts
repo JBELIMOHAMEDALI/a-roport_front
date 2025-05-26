@@ -23,7 +23,7 @@ declare const $: any;
     '../../../../assets/icon/svg-animated/svg-weather.css'
   ]
 })
-export class DashboardDefaultComponent implements OnInit,AfterViewInit  {
+export class DashboardDefaultComponent implements OnInit, AfterViewInit {
   totalValueGraphData1 = buildChartJS('#fff', [45, 25, 35, 20, 45, 20, 40, 10, 30, 45], '#3a73f1', 'transparent');
   totalValueGraphData2 = buildChartJS('#fff', [10, 25, 35, 20, 10, 20, 15, 45, 15, 10], '#e55571', 'transparent');
   totalValueGraphOption = buildChartOption();
@@ -33,96 +33,60 @@ export class DashboardDefaultComponent implements OnInit,AfterViewInit  {
   CategoryCount = 0;
   ProductCount = 0;
   ordersListLivreur: any[] = []
-  Delivered = 0 ;
-  Shipped = 0 ;
-  Received = 0 ;
-  Canceled = 0 ;
+  Delivered = 0;
+  Shipped = 0;
+  Received = 0;
+  Canceled = 0;
 
-  Deliveredliv = 0 ;
-  Shippedliv = 0 ;
-  Receivedliv = 0 ;
-  Canceledliv = 0 ;
+  Deliveredliv = 0;
+  Shippedliv = 0;
+  Receivedliv = 0;
+  Canceledliv = 0;
 
   erour = false;
   currentYear: number = null;
   selectedYear: number = null;
   selectedStatus: string = 'Pending'; // Initialize with a default status
   chart: any;
-  years: number[] = [2025,2024, 2023, 2022]; // Example years
+  years: number[] = [2025, 2024, 2023, 2022]; // Example years
   statuses: string[] = ['Pending', 'Approved', 'Rejected']; // Example statuses
   datachart: any[] = []; // Will hold the chart data
-  adminCount:any ;
-  constructor(private backendService: BackendService
-    ,    private tokenService: TokenStorageService
+  adminCount: any;
+  clientCount: any;
+ storeCount: any;
 
-  ) {}
+  constructor(private backendService: BackendService
+    , private tokenService: TokenStorageService
+
+  ) { }
 
   ngOnInit() {
     this.userLoggedIn = this.tokenService.getDecodedUser();
-    if(this.userLoggedIn.role==='ADMIN'){  
-    this.getAdminCount();
-    // this.getCategoryCount();
-    // this.getProductCount();
-    // this.getOrderCount();
+    if (this.userLoggedIn.role === 'ADMIN') {
+      this.getAdminCount();
+      this.getclientCount();
+      this.getStoreCount();
+      this.currentYear = new Date().getFullYear();
+      this.selectedYear = this.currentYear; // Initialize with the current year
+      this.initChart();
+      this.getStatistiqueAll(); // Load default data on initialization
+    }
+    if (this.userLoggedIn.role === 'USER') {
+      // this.getUsersCount()
+    }
+    if (this.userLoggedIn.role == 'DELIVERYMAN') {
+      // this.getListOrdersLiv()
+    }
 
-    this.currentYear = new Date().getFullYear();
-    this.selectedYear = this.currentYear; // Initialize with the current year
-    this.initChart();
-    this.getStatistiqueAll(); // Load default data on initialization
   }
-  if(this.userLoggedIn.role==='USER'){
-      this.getUsersCount()
+  onChangeYear(year) {
+    this.currentYear = year
   }
-  if(this.userLoggedIn.role=='DELIVERYMAN'){
-    this.getListOrdersLiv()
-}
-  
-  }
-
-
-  getUsersCount() {
-    this.backendService.get(`${environment.apiUrl}/orders/userCount/${this.tokenService.getDecodedUser().userId}`).subscribe(
-      new Observer().OBSERVER_GET((response) => {
-        let data:any []=[]
-          data =response.rows
-          data.forEach(element => {
-              if(element.status == 'Shipped'){ this.Shipped = element.count}
-              if(element.status == 'Delivered'){ this.Delivered = element.count}
-              if(element.status == 'Canceled'){ this.Canceled = element.count}
-              if(element.status == 'Received'){ this.Received = element.count}
-;
-          });
-          
-          
-      })
-    );
-  }
-
-
-  getListOrdersLiv() {
-    // const docId = "InnPv3DULUxZZvwYCgym";
-    this.backendService.get(`${environment.apiUrl + '/orders/deliveryman/'}${this.tokenService.getDecodedUser().userId}`).subscribe(
-      new Observer().OBSERVER_GET((response) => {
-        this.ordersListLivreur = response.rows;
-
-        this.ordersListLivreur.forEach(element => {
-          if (element.status === 1) { this.Shippedliv += 1; }
-          if (element.status === 2) { this.Deliveredliv += 1; }
-          if (element.status === 3) { this.Canceledliv += 1; }
-          if (element.status === 4) { this.Receivedliv += 1; }
-        });
-        console.log(this.ordersListLivreur);
-        
-      })
-    );
-  }
-
-
 
   ngAfterViewInit() {
-    if(this.userLoggedIn.role==='ADMIN'){ 
-    this.initChart(); // Initialize the chart after the view has been rendered
-    this.getStatistiqueAll(); // Load initial data for the chart
+    if (this.userLoggedIn.role === 'ADMIN') {
+      this.initChart(); // Initialize the chart after the view has been rendered
+      this.getStatistiqueAll(); // Load initial data for the chart
     }
   }
   // Initialize the chart
@@ -175,7 +139,6 @@ export class DashboardDefaultComponent implements OnInit,AfterViewInit  {
       }
     });
   }
-
   // Cleanup the chart when the component is destroyed to avoid memory leaks
   ngOnDestroy() {
     if (this.chart) {
@@ -188,89 +151,54 @@ export class DashboardDefaultComponent implements OnInit,AfterViewInit  {
     this.backendService.get(`${environment.apiUrl}/admin/dashboard/stats`).subscribe(
       new Observer().OBSERVER_GET((response) => {
         this.adminCount = response.rows;
-        console.log(this.adminCount);
-        
+
       })
     );
   }
 
-  // Fetch category count
-  // getCategoryCount() {
-  //   this.backendService.get(`${environment.apiUrl}/categories/count`).subscribe(
-  //     new Observer().OBSERVER_GET((response) => {
-  //       this.CategoryCount = response.rows;
-  //     })
-  //   );
-  // }
+  getclientCount() {
+    this.backendService.get(`${environment.apiUrl}/client/${this.tokenService.getDecodedUser().userId}/dashboard/stats`).subscribe(
+      new Observer().OBSERVER_GET((response) => {
+        this.clientCount = response.rows;
 
-  // Fetch product count
-  // getProductCount() {
-  //   this.backendService.get(`${environment.apiUrl}/products/count`).subscribe(
-  //     new Observer().OBSERVER_GET((response) => {
-  //       this.ProductCount = response.rows;
-  //     })
-  //   );
-  // }
+      })
+    );
+  }
 
-  // Fetch order count
-  // getOrderCount() {
-  //   this.backendService.get(`${environment.apiUrl}/orders/counts-by-status`).subscribe(
-  //     new Observer().OBSERVER_GET((response) => {
-  //       let data = response.rows;
-  //       let nbrOrder = 0;
-  //       data.forEach(element => {
-  //         nbrOrder += element.count;
-  //       });
-  //       this.OrderCount = nbrOrder;
-  //     })
-  //   );
-  // }
+    getStoreCount() {
+    this.backendService.get(`${environment.apiUrl}/magazin/${this.tokenService.getDecodedUser().userId}/dashboard/stats`).subscribe(
+      new Observer().OBSERVER_GET((response) => {
+        this.storeCount = response.rows;
+        console.log(this.storeCount);
 
-  // Fetch statistics for the default year
+      })
+    );
+  }
   getStatistiqueAll() {
     this.backendService
       .get(`${environment.apiUrl}/admin/payments?year=${this.currentYear}`)
-  .subscribe(
-    new Observer().OBSERVER_GET((response) => {
-      if (response.rows && response.rows.monthlyBreakdown.length) {
-        // Transform the monthly breakdown
-        this.datachart = response.rows.monthlyBreakdown.map((item, index) => ({
-          year: item.month,
-          value: item.monthlyEarnings
-        }));
-
-        this.updateChartData();
-      } else {
-        console.log('No data available for the selected year');
-        this.datachart = [];
-        this.updateChartData();
-      }
-    })
-  );
-  }
-
-  // Fetch statistics by selected year and status
-  getStatistiqueBayYersAndStatus(selectedYear: number, selectedStatus: string) {
-    this.backendService
-      .get(`${environment.apiUrl}/orders/statistics/${selectedYear}?status=${selectedStatus}`)
       .subscribe(
         new Observer().OBSERVER_GET((response) => {
-          if (response.rows && response.rows.length) {
-            this.datachart = response.rows;
-            this.updateChartData(); 
+          if (response.rows && response.rows.monthlyBreakdown.length) {
+            // Transform the monthly breakdown
+            this.datachart = response.rows.monthlyBreakdown.map((item, index) => ({
+              year: item.month,
+              value: item.paidInMonth
+            }));
+
+            this.updateChartData();
           } else {
-            console.log('No data available for the selected filters');
-            this.datachart = []; // Clear the chart if no data
+            console.log('No data available for the selected year');
+            this.datachart = [];
             this.updateChartData();
           }
         })
       );
   }
-
   // Handle button click to load data based on selected year and status
   onButtonClick() {
     if (this.selectedYear) {
-this.getStatistiqueAll();
+      this.getStatistiqueAll();
     } else {
       this.erour = true;
     }
