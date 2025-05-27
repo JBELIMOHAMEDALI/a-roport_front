@@ -129,7 +129,7 @@ export class ListMyCommandeComponent implements OnInit {
       if (result) {
         let payload = {}
         this.backendService
-          .put(`${environment.apiUrl}/orders/${id}/4`, payload)
+          .put(`${environment.apiUrl}/orders/${id}/6`, payload)
           .subscribe(
             new Observer(
               this.router,

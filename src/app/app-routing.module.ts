@@ -59,7 +59,7 @@ const routes: Routes = [
       {
         path: "profil",
         component: ProfileComponent,
-        // data: { role: ["USER", "DELIVERYMAN", "ADMIN"] },
+        // data: { role: ["STORE", "CLIENT", "ADMIN"] },
       },
       // { path: "simple", component: SimplePageComponent ,
       //    data: { role: "Medecin" },

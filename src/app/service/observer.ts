@@ -24,7 +24,7 @@ export default class Observer {
         if (cb) cb(response, true);
       },
       error: (err: HttpErrorResponse) => {
-        swal("Failure!", err.error || 'Failure', "warning");
+        swal("Failure!", err.message || 'Failure', "warning");
         if (this.router) this.router.navigate([this.target]);
         cb(err, false);
       },
@@ -61,7 +61,7 @@ export default class Observer {
       },
       error: (err: HttpErrorResponse) => {
         cb(err, false);
-        swal("Failure!", err.error || 'Failure', "warning");
+        swal("Failure!", err.message || 'Failure', "warning");
       },
     };
   }

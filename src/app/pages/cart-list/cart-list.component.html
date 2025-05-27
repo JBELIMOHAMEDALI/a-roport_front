@@ -89,8 +89,8 @@
               <td>{{item.index}}</td>
               <td>{{item.name}}</td>
               <td style="background-color: antiquewhite;">{{item.price+ ' DT'}}</td>
-                  <td class="align-middle" style="background-color: aquamarine;">{{ (item.price * (1 + item.tva / 100)) | number:'1.2-2' }} DT</td>
-              <td style="background-color: beige;">{{item.tva+' %'}}</td>
+                  <td class="align-middle" style="background-color: aquamarine;">{{ (item.price * item.tva)+item.price | number:'1.2-2' }} DT</td>
+              <td style="background-color: beige;">{{(item.tva*100) +' %'}}</td>
               <td>
                 <!-- update -->
                 &nbsp;&nbsp;&nbsp;&nbsp;

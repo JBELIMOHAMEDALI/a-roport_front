@@ -1,6 +1,6 @@
 <div class="row">
 
-  <ng-container *ngIf="this.userLoggedIn?.role=='ADMIN1'">
+  <ng-container *ngIf="this.userLoggedIn?.role=='ADMIN'">
 
     <div class="col-md-6 col-xl-2">
       <div class="card widget-card-1">
@@ -93,7 +93,7 @@
     </div>
   </ng-container>
   <!-- client  -->
-  <ng-container *ngIf="this.userLoggedIn?.role=='ADMIN'">
+  <ng-container *ngIf="this.userLoggedIn?.role=='CLIENT'">
 
     <!-- card1 start -->
     <div class="col-md-6 col-xl-3">
