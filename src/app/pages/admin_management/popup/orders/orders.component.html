@@ -124,8 +124,8 @@
   
   <!-- Modal Footer -->
   <div class="modal-footer">
-    <button  type="button" *ngIf="this.obj.status === 3"  (click)="openAffected(this.obj.id,5)" class="btn btn-primary">Ready to taken</button>
-    <button  type="button" *ngIf="this.obj.status === 5"  (click)="openAffected(this.obj.id,4)" class="btn btn-danger">Cancelled</button>
+    <button  type="button" *ngIf="this.obj.status === 3 && this.userRole.role === 'STORE'"  (click)="openAffected(this.obj.id,5)" class="btn btn-primary">Ready to taken</button>
+    <button  type="button" *ngIf="this.obj.status === 5 && this.userRole.role === 'STORE'"  (click)="openAffected(this.obj.id,4)" class="btn btn-danger">Cancelled</button>
     <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Fermer</button>
   </div>
   

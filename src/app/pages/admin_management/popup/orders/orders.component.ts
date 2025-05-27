@@ -6,6 +6,7 @@ import { SharedService } from '../../../../service/shared.service';
 import { environment } from '../../../../../environments/environment';
 import { NgForm } from '@angular/forms';
 import Observer from '../../../../service/observer';
+import { TokenStorageService } from "./../../../../service/token-storage.service";
 
 @Component({
   selector: 'app-orders',
@@ -18,17 +19,20 @@ export class OrdersComponent implements OnInit {
   @Input() status: any; // Make sure the obj is correctly typed or use `any` if unsure
   somme = 0;
   sommeTTc = 0;
+  userRole = this.tokenService.getDecodedUser()
 
   constructor(
     public activeModal: NgbActiveModal,
     private modalService: NgbModal,
     public sharedService: SharedService,
+    private tokenService: TokenStorageService,
 
         private backendService: BackendService,
         public router: Router
   ) { }
 
   ngOnInit() {
+console.log(this.userRole.role);
 
     
     // Check if obj and obj.orderLines exist
