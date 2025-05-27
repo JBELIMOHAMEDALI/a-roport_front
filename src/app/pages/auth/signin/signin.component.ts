@@ -52,6 +52,10 @@ export class SigninComponent implements OnInit {
         new Observer(this.router, null, false).OBSERVER_SIGNINFIRESTCONNECTION(
           (response: any, loggedIn: boolean) => {
             localStorage.setItem("imgProfile",response.rows.imagePath)
+            if(response.rows.magazins.length >0){
+                          localStorage.setItem("magazins_id",response.rows.magazins[0].id)
+
+            }
             this.loggedIn = false;
             if (loggedIn) {
               if(!response.rows.connectionOtp){this.sendOtp(response.rows.id)}

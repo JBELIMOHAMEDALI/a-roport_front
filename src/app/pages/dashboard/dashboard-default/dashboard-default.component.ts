@@ -62,20 +62,22 @@ export class DashboardDefaultComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.userLoggedIn = this.tokenService.getDecodedUser();
-    if (this.userLoggedIn.role === 'ADMIN') {
-      this.getAdminCount();
-      this.getclientCount();
-      this.getStoreCount();
-      this.currentYear = new Date().getFullYear();
+    
       this.selectedYear = this.currentYear; // Initialize with the current year
+    if (this.userLoggedIn.role === 'ADMIN') {
+      this.currentYear = new Date().getFullYear();
+      this.getAdminCount();
       this.initChart();
       this.getStatistiqueAll(); // Load default data on initialization
     }
-    if (this.userLoggedIn.role === 'USER') {
+    if (this.userLoggedIn.role === 'CLIENT') {
+            this.getclientCount();
       // this.getUsersCount()
     }
-    if (this.userLoggedIn.role == 'DELIVERYMAN') {
+    if (this.userLoggedIn.role == 'STORE') {
       // this.getListOrdersLiv()
+            this.getStoreCount();
+
     }
 
   }
@@ -160,17 +162,14 @@ export class DashboardDefaultComponent implements OnInit, AfterViewInit {
     this.backendService.get(`${environment.apiUrl}/client/${this.tokenService.getDecodedUser().userId}/dashboard/stats`).subscribe(
       new Observer().OBSERVER_GET((response) => {
         this.clientCount = response.rows;
-
       })
     );
   }
 
     getStoreCount() {
-    this.backendService.get(`${environment.apiUrl}/magazin/${this.tokenService.getDecodedUser().userId}/dashboard/stats`).subscribe(
+    this.backendService.get(`${environment.apiUrl}/magazin/${localStorage.getItem('magazins_id')}/dashboard/stats`).subscribe(
       new Observer().OBSERVER_GET((response) => {
         this.storeCount = response.rows;
-        console.log(this.storeCount);
-
       })
     );
   }
@@ -179,16 +178,19 @@ export class DashboardDefaultComponent implements OnInit, AfterViewInit {
       .get(`${environment.apiUrl}/admin/payments?year=${this.currentYear}`)
       .subscribe(
         new Observer().OBSERVER_GET((response) => {
+          console.log(response.rows.monthlyBreakdown);
+          
           if (response.rows && response.rows.monthlyBreakdown.length) {
             // Transform the monthly breakdown
             this.datachart = response.rows.monthlyBreakdown.map((item, index) => ({
               year: item.month,
               value: item.paidInMonth
             }));
+          // console.log(this.datachart);
+
 
             this.updateChartData();
           } else {
-            console.log('No data available for the selected year');
             this.datachart = [];
             this.updateChartData();
           }
