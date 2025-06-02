@@ -6,6 +6,7 @@ import { SharedService } from '../../../../service/shared.service';
 import { environment } from '../../../../../environments/environment';
 import { NgForm } from '@angular/forms';
 import Observer from '../../../../service/observer';
+import { TokenStorageService } from "./../../../../service/token-storage.service";
 
 @Component({
   selector: 'app-categories',
@@ -21,7 +22,7 @@ export class CategoriesComponent implements OnInit {
   constructor(
     public activeModal: NgbActiveModal,
     public sharedService: SharedService,
-
+    private tokenService: TokenStorageService,
     private backendService: BackendService,
     public router: Router
   ) { }
@@ -40,7 +41,7 @@ export class CategoriesComponent implements OnInit {
     if(this.add){
       const payload={
   "name": f.value.name,
-  "magazinId": 1
+  "magazinId": localStorage.getItem("magazins_id")
 };
     this.backendService
         .post(`${environment.apiUrl}/categories`, payload)

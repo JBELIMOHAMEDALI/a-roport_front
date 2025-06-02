@@ -61,7 +61,6 @@ export class CardPaymentComponent implements OnInit {
 
   }
   sendOtp(id_order, id_user) {
-    alert("ok")
     this.backendService
       .post(`${environment.apiUrl}/orders/${id_order}/payment/send-otp?userId=${id_user}`, null)
       .subscribe(new Observer(

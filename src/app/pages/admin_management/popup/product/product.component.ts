@@ -111,7 +111,7 @@ export class ProductComponent implements OnInit {
 
     // Adjust other payload values
     payload.categoryId =  payload.category;
-    payload.magazinId =  1;
+    payload.magazinId =  localStorage.getItem("magazins_id");
     payload.tva = payload.tva ;
 
     // Differentiate between adding and editing a product
