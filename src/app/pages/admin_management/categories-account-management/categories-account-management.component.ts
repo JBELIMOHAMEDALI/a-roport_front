@@ -36,7 +36,7 @@ export class CategoriesAccountManagementComponent implements OnInit {
 
   }
   getListCatgory() {
-    this.backendService.get(`${environment.apiUrl + '/categories'}`).subscribe(
+    this.backendService.get(`${environment.apiUrl + '/categories/magazin/'}${localStorage.getItem("magazins_id")}`).subscribe(
       new Observer().OBSERVER_GET((response) => {
         this.categoriesList = response.rows;
       })

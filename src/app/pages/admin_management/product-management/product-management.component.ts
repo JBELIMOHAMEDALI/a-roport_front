@@ -43,7 +43,7 @@ export class ProductManagementComponent implements OnInit {
   }
   getListProducts() {
     // const docId = "InnPv3DULUxZZvwYCgym";
-    this.backendService.get(`${environment.apiUrl + '/products'}`).subscribe(
+    this.backendService.get(`${environment.apiUrl + '/products/filter?magazinId='}${localStorage.getItem("magazins_id")}`).subscribe(
       new Observer().OBSERVER_GET((response) => {
         this.productsList = response.rows;
       })

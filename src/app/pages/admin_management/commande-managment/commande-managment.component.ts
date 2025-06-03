@@ -42,7 +42,7 @@ export class CommandeManagmentComponent implements OnInit {
   getListOrders() {
     const storeID =this.tokenService.getDecodedUser().userId;
     // const docId = "InnPv3DULUxZZvwYCgym";
-    this.backendService.get(`${environment.apiUrl + '/orders'}`).subscribe(
+    this.backendService.get(`${environment.apiUrl + '/orders/filter?magazinId='}${localStorage.getItem("magazins_id")}`).subscribe(
       new Observer().OBSERVER_GET((response) => {
         this.ordersList = response.rows;
         console.log(this.ordersList);
